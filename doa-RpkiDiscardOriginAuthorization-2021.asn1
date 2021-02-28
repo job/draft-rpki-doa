@@ -1,0 +1,28 @@
+DiscardOriginAttestation-2021 { iso(1) member-body(2) us(840) rsadsi(113549)
+	pkcs(1) pkcs9(9) smime(16) mod(0) 49 }
+
+DEFINITIONS EXPLICIT TAGS ::=
+BEGIN
+
+IMPORTS
+
+    IPList
+    FROM RpkiSignedChecklist-2021
+        -- in [draft-spaghetti-sidrops-rpki-rsc]
+        { iso(1) member-body(2) us(840) rsadsi(113549)
+          pkcs(1) pkcs9(9) smime(16) mod(0) TBD };
+
+id-ct-DiscardOriginAttestation OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+    us(840) rsadsi(113549) pkcs(1) pkcs-9(9) id-smime(16) id-ct(1) TBD }
+
+DiscardOriginAttestation ::= SEQUENCE {
+    version		[0] INTEGER DEFAULT 0,
+    ipAddrBlocks	IPList,
+    communities		SEQUENCE SIZE(1..MAX) OF Community
+}
+
+Community ::= CHOICE {
+    rfc1997Community	BIT STRING (size(32)),
+    rfc8092Community	BIT STRING (size(96)) }
+
+END
