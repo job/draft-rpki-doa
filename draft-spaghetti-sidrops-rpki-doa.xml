@@ -31,6 +31,19 @@
     </address>
   </author>
 
+  <author fullname="Mikael Abrahamsson" initials="M." surname="Abrahamsson">
+    <organization abbrev="NTT">NTT Ltd.</organization>
+    <address>
+      <postal>
+        <street />
+        <code />
+        <city>Stockholm</city>
+        <country>Sweden</country>
+      </postal>
+      <email>mikael@swm.pp.se</email>
+    </address>
+  </author>
+
   <date />
 
   <abstract>
@@ -122,9 +135,13 @@ DiscardOriginAttestation ::= SEQUENCE {
     communities		SEQUENCE SIZE(1..MAX) OF Community
 }
 
-Community ::= CHOICE {
-    rfc1997Community	BIT STRING (size(32)),
-    rfc8092Community	BIT STRING (size(96)) }
+Community ::= SEQUENCE {
+    type        CommunityType,
+    value       BIT STRING (SIZE(32) | SIZE(96)) }
+
+CommunityType ::= ENUMERATED {
+    classic	(8),
+    large	(32) }
 
 END
 </artwork></figure>

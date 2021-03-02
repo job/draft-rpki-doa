@@ -1,0 +1,37 @@
+<DiscardOriginAttestation>
+
+  <asID>
+    15562
+  </asID>
+
+  <ipAddrBlocks>
+    <IPAddressFamily>
+      <addressFamily>00 02</addressFamily>
+      <addressesOrRanges>
+        <addressPrefix>
+          001000000000000100000110011111000010000010001100
+        </addressPrefix>
+      </addressesOrRanges>
+      <prefixLengthRange>
+        <minlength>
+          64
+        </minlength>
+        <maxlength>
+          128
+        </maxlength>
+      </prefixLengthRange>
+    </IPAddressFamily>
+  </ipAddrBlocks>
+
+  <communities>
+    <Community>
+      <communityType>
+        1.2.6.1.4.1.41948.179.1.8
+      </communityType>
+      <communityValue>
+        4294902426
+      </communityValue>
+    </Community>
+  </communities>
+
+</DiscardOriginAttestation>
