@@ -24,14 +24,12 @@
   </ipAddrBlocks>
 
   <communities>
-    <Community>
-      <communityType>
-        1.2.6.1.4.1.41948.179.1.8
-      </communityType>
-      <communityValue>
+      <bgpCommunity>
         4294902426
-      </communityValue>
-    </Community>
+      </bgpCommunity>
+      <bgpCommunity>
+        4294967041
+      </bgpCommunity>
   </communities>
 
 </DiscardOriginAttestation>
