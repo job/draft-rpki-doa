@@ -5,29 +5,29 @@ DiscardOriginAttestation-2021 {
 DEFINITIONS EXPLICIT TAGS ::=
 BEGIN
 
-id-ct-DiscardOriginAttestation OBJECT IDENTIFIER ::= {
-    iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1) pkcs-9(9) id-smime(16) id-ct(1)
-    666 }
+CONTENT-TYPE ::= CLASS {
+    &id OBJECT IDENTIFIER UNIQUE,
+    &Type OPTIONAL
+    } WITH SYNTAX {
+    [TYPE &Type] IDENTIFIED BY &id
+    }
 
-id-ct-BgpCommunity OBJECT IDENTIFIER ::= {
-    -- perhaps something else than a PEN
-    iso(1) org(2) dod(6) internet(1) private(4) enterprise(1)
-    jobsnijders(41948) bgp(179) attr(1) classic(8)
-}
+ct-discardOriginAttestation CONTENT-TYPE ::=
+   { TYPE DiscardOriginAttestation IDENTIFIED BY
+     id-ct-discardOriginAttestation }
 
-id-ct-BgpLargeCommunity OBJECT IDENTIFIER ::= {
-    -- perhaps something else than a PEN
-    iso(1) org(2) dod(6) internet(1) private(4) enterprise(1)
-    jobsnijders(41948) bgp(179) attr(1) large(32)
-}
+id-ct-discardOriginAttestation OBJECT IDENTIFIER ::=
+   { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+     pkcs-9(9) id-smime(16) id-ct(1) TBD }
+
 
 DiscardOriginAttestation ::= SEQUENCE {
-    version		[0] INTEGER DEFAULT 0,
-    asID		SEQUENCE SIZE(1..MAX) OF ASID,
-    ipAddrBlocks        IPListRange,
-    communities		SEQUENCE SIZE(1..MAX) OF Community }
+   version             [0] INTEGER DEFAULT 0,
+   asID                SEQUENCE SIZE(1..MAX) OF ASId,
+   ipAddrBlocks        IPListRange,
+   communities         SEQUENCE SIZE(1..MAX) OF Community }
 
-ASID ::= INTEGER
+ASId ::= INTEGER
 
 IPListRange ::= SEQUENCE (SIZE(1..MAX)) OF IPAddressFamily
 
@@ -35,6 +35,7 @@ IPAddressFamily ::= SEQUENCE {
     addressFamily        OCTET STRING (SIZE(2..3)),
     addressesOrRanges    SEQUENCE OF IPAddressOrRange,
     prefixLengthRange    PrefixLengthRange OPTIONAL } -- if omitted, assume hostroutes
+
 PrefixLengthRange ::= SEQUENCE {
     minlength		 INTEGER,
     maxlength            INTEGER
@@ -51,8 +52,8 @@ IPAddressRange ::= SEQUENCE {
 
 IPAddress ::= BIT STRING
 
-Community ::= SEQUENCE {
-    communityType	OBJECT IDENTIFIER, -- id-ct-BgpCommunity or id-ct-BgpLargeCommunity
-    communityValue	OCTET STRING }
+Community ::= CHOICE {
+   bgpCommunity        [0] OCTET STRING (SIZE(4)),
+   bgpLargeCommunity   [1] OCTET STRING (SIZE(12)) }
 
 END
