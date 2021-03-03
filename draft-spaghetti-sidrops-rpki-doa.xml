@@ -112,36 +112,55 @@
       An RSC is formally defined as:
     </t>
 <figure><artwork>
-DiscardOriginAttestation-2021 { iso(1) member-body(2) us(840) rsadsi(113549)
-	pkcs(1) pkcs9(9) smime(16) mod(0) 49 }
+RPKIDiscardOriginAttestation-2021
+ { iso(1) member-body(2) us(840) rsadsi(113549)
+   pkcs(1) pkcs9(9) smime(16) mod(0) TBD }
 
 DEFINITIONS EXPLICIT TAGS ::=
 BEGIN
 
 IMPORTS
+ CONTENT-TYPE
+ FROM CryptographicMessageSyntax-2009 -- in [RFC5911]
+   { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+     pkcs-9(9) smime(16) modules(0) id-mod-cms-2004-02(41) }
 
-    IPList
-    FROM RpkiSignedChecklist-2021
-        -- in [draft-spaghetti-sidrops-rpki-rsc]
-        { iso(1) member-body(2) us(840) rsadsi(113549)
-          pkcs(1) pkcs9(9) smime(16) mod(0) TBD };
+ IPAddressOrRange, IPAddressRange, IPAddress, ASId
+ FROM IPAddrAndASCertExtn -- in [RFC3779]
+   { iso(1) identified-organization(3) dod(6) internet(1)
+     security(5) mechanisms(5) pkix(7) mod(0)
+     id-mod-ip-addr-and-as-ident(30) } ;
 
-id-ct-DiscardOriginAttestation OBJECT IDENTIFIER ::= { iso(1) member-body(2)
-    us(840) rsadsi(113549) pkcs(1) pkcs-9(9) id-smime(16) id-ct(1) TBD }
+ct-discardOriginAttestation CONTENT-TYPE ::=
+   { TYPE DiscardOriginAttestation IDENTIFIED BY
+     id-ct-discardOriginAttestation }
+
+id-ct-discardOriginAttestation OBJECT IDENTIFIER ::=
+   { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+     pkcs-9(9) id-smime(16) id-ct(1) TBD }
 
 DiscardOriginAttestation ::= SEQUENCE {
-    version		[0] INTEGER DEFAULT 0,
-    ipAddrBlocks	IPList,
-    communities		SEQUENCE SIZE(1..MAX) OF Community
+   version             [0] INTEGER DEFAULT 0,
+   asID                SEQUENCE SIZE(1..MAX) OF ASId,
+   ipAddrBlocks        IPListRange,
+   communities         SEQUENCE SIZE(1..MAX) OF Community }
+
+IPListRange ::= SEQUENCE (SIZE(1..MAX)) OF IPAddressFamilyRange
+
+IPAddressFamilyRange ::= SEQUENCE {
+   addressFamily        OCTET STRING (SIZE(2..3)),
+   addressesOrRanges    SEQUENCE SIZE(1..MAX) OF IPAddressOrRange,
+   prefixLengthRange    PrefixLengthRange OPTIONAL } -- if omitted, assume
+hostroutes
+
+PrefixLengthRange ::= SEQUENCE {
+   minLength            INTEGER,
+   maxLength            INTEGER
 }
 
-Community ::= SEQUENCE {
-    type        CommunityType,
-    value       BIT STRING (SIZE(32) | SIZE(96)) }
-
-CommunityType ::= ENUMERATED {
-    classic	(8),
-    large	(32) }
+Community ::= CHOICE {
+   bgpCommunity        [0] OCTET STRING (SIZE(4)),
+   bgpLargeCommunity   [1] OCTET STRING (SIZE(12)) }
 
 END
 </artwork></figure>
@@ -320,23 +339,7 @@ END
 
   <section anchor="Acknowledgements" title="Acknowledgements">
     <t>
-      The author wishes to thank George Michaelson,
-        Tom Harrison,
-        Geoff Huston,
-        Randy Bush,
-        Stephen Kent,
-        Matt Lepinski,
-        Rob Austein,
-        Ted Unangst,
-        and Marc Espie
-     for prior art.
-     The author thanks Russ Housley for reviewing the ASN.1 notation and providing suggestions.
-     The author would like to thank Nimrod Levy,
-     Tom Harrison,
-     Ben Maddison,
-     and
-     Tim Bruijnzeels
-     for document review and suggestions.
+     The author thanks Russ Housley for reviewing the ASN.1 notation and providing excellent suggestions.
     </t>
   </section>
 
