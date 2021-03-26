@@ -23,8 +23,8 @@ id-ct-discardOriginAttestation OBJECT IDENTIFIER ::=
 
 DiscardOriginAttestation ::= SEQUENCE {
    version             [0] INTEGER DEFAULT 0,
-   asID                SEQUENCE SIZE(1..MAX) OF ASId,
-   peerASID            SEQUENCE OF ASId OPTIONAL,
+   asID                ASId,
+   peerASID            SEQUENCE OF ASId DEFAULT &asID,
    ipAddrBlocks        IPListRange,
    communities         SEQUENCE SIZE(1..MAX) OF Community }
 
