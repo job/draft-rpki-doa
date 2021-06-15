@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>branches: main &#8212; RPKI Discard Origin Attestations 0.1.dev14 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/readable.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="changes" href="../../../toc-draft-spaghetti-sidrops-rpki-doa-diffs.html" />
+    <link rel="prev" title="branches" href="../../../toc-draft-spaghetti-sidrops-rpki-doa-branches.html" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  
+  
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../../xml2rfc-version-index.html" title="Internet Draft Versions"
+             >drafts</a> |</li>
+        <li class="right" >
+          <a href="../../../toc-draft-spaghetti-sidrops-rpki-doa-diffs.html" title="changes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../../toc-draft-spaghetti-sidrops-rpki-doa-branches.html" title="branches"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">RPKI Discard Origin Attestations 0.1.dev14 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../toc.html" >Internet Drafts</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../toc-draft-spaghetti-sidrops-rpki-doa.html" ><code class="docutils literal notranslate"><span class="pre">draft-spaghetti-sidrops-rpki-doa</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../../toc-draft-spaghetti-sidrops-rpki-doa-branches.html" accesskey="U">branches</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">branches: main</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="branches-main">
+<h1>branches: main<a class="headerlink" href="#branches-main" title="Permalink to this headline">¶</a></h1>
+<dl class="xml2rfc version">
+<dt class="sig sig-object xml2rfc" id="xml2rfc-version-draft-spaghetti-sidrops-rpki-doa-branches-main">
+<span class="sig-name descname"><span class="pre">draft-spaghetti-sidrops-rpki-doa</span></span><a class="headerlink" href="#xml2rfc-version-draft-spaghetti-sidrops-rpki-doa-branches-main" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Network Working Group                                        J. Snijders
+Internet-Draft                                                    Fastly
+Intended status: Standards Track                          M. Abrahamsson
+Expires: 17 December 2021                                            NTT
+                                                             B. Maddison
+                                                              Workonline
+                                                            15 June 2021
+
+
+  Resource Public Key Infrastructure (RPKI) object profile for Discard
+                       Origin Attestations (DOA)
+                  draft-spaghetti-sidrops-rpki-doa-00
+
+Abstract
+
+   This document defines a Cryptographic Message Syntax (CMS) profile
+   for Discard Origin Attestations (DOAs), for use with the Resource
+   Public Key Infrastructure (RPKI).  A DOA is a digitally signed object
+   that provides a means of verifying that an IP address block holder
+   has authorized an Autonomous System (AS) to originate routes to one
+   or more prefixes within the address block with a set of Border
+   Gateway Protocol (BGP) Communities to signal a request to discard any
+   traffic destined towards the tagged IP prefix.
+
+Requirements Language
+
+   The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+   &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;NOT RECOMMENDED&quot;, &quot;MAY&quot;, and
+   &quot;OPTIONAL&quot; in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as &quot;work in progress.&quot;
+
+   This Internet-Draft will expire on 17 December 2021.
+
+Copyright Notice
+
+   Copyright (c) 2021 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust&#39;s Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Simplified BSD License text
+   as described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  DOA EncapsulatedContentInfo
+     2.1.  ASN.1 Module
+     2.2.  The DOA eContentType
+     2.3.  The DOA eContent
+       2.3.1.  version
+       2.3.2.  ipAddrBlocks
+       2.3.3.  originAsID
+       2.3.4.  peerAsIDs
+       2.3.5.  communities
+   3.  DOA Validation
+   4.  BGP Discard Route Matching
+   5.  Operational Considerations
+   6.  Security Considerations
+   7.  Implementation status
+   8.  IANA Considerations
+     8.1.  SMI Security for S/MIME CMS Module Identifier
+           (1.2.840.113549.1.9.16.0)
+     8.2.  SMI Security for S/MIME CMS Content Type
+           (1.2.840.113549.1.9.16.1)
+     8.3.  RPKI Signed Objects registry
+     8.4.  RPKI Repository Name Schemes registry
+     8.5.  Media Types registry
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
+   Appendix A.  Acknowledgements
+   Appendix B.  Document Changelog
+     B.1.  Individual Submission Phase
+   Authors&#39; Addresses
+
+1.  Introduction
+
+   This document defines a Cryptographic Message Syntax (CMS) [RFC5652]
+   profile for Discard Origin Attestations (DOAs), for use with the
+   Resource Public Key Infrastructure (RPKI) [RFC6480].
+
+   TODO: Purpose - to authorise origination of blackhole routes, and
+   signal the properties that such routes should have when received at
+   an eBGP border.
+
+   TODO: Document contents - eContentType definition; eContent
+   definition; DOA object validation; BGP discard route matching.
+
+2.  DOA EncapsulatedContentInfo
+
+   DOA follows the Signed Object Template for the RPKI [RFC6488].
+
+2.1.  ASN.1 Module
+
+   The following ASN.1 module specifies the encapContentInfo component
+   for DOA objects:
+
+   RpkiDiscardOriginAttestation-2021
+    { iso(1) member-body(2) us(840) rsadsi(113549)
+      pkcs(1) pkcs9(9) smime(16) mod(0) TBD }
+
+   DEFINITIONS EXPLICIT TAGS ::=
+   BEGIN
+
+   IMPORTS
+    CONTENT-TYPE
+    FROM CryptographicMessageSyntax-2010 -- in [RFC6268]
+      { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+        pkcs-9(9) smime(16) modules(0) id-mod-cms-2009(58) }
+
+    IPAddressOrRange, IPAddressRange, IPAddress, ASId
+    FROM IPAddrAndASCertExtn -- in [RFC3779]
+      { iso(1) identified-organization(3) dod(6) internet(1)
+        security(5) mechanisms(5) pkix(7) mod(0)
+        id-mod-ip-addr-and-as-ident(30) } ;
+
+   ct-discardOriginAttestation CONTENT-TYPE ::=
+      { TYPE DiscardOriginAttestation IDENTIFIED BY
+        id-ct-discardOriginAttestation }
+
+   id-ct-discardOriginAttestation OBJECT IDENTIFIER ::=
+      { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+        pkcs-9(9) id-smime(16) id-ct(1) TBD }
+
+   DiscardOriginAttestation ::= SEQUENCE {
+      version             [0] INTEGER DEFAULT 0,
+      ipAddrBlocks        IPListRange,
+      originAsID          ASId,
+      peerAsIDs           [1] SEQUENCE SIZE(1..MAX) OF ASId OPTIONAL,
+      communities         [2] SEQUENCE SIZE(1..MAX) OF Community
+   }
+
+   IPListRange ::= SEQUENCE (SIZE(1..MAX)) OF IPAddressFamilyRange
+
+   IPAddressFamilyRange ::= SEQUENCE {
+      addressFamily        OCTET STRING (SIZE(2..3)),
+      addressOrRange       IPAddressOrRange,
+      prefixLengthRange    PrefixLengthRange OPTIONAL -- if omitted, assume hostroutes
+   }
+
+   PrefixLengthRange ::= SEQUENCE {
+      minLength            INTEGER,
+      maxLength            INTEGER
+   }
+
+   Community ::= CHOICE {
+      bgpCommunity        [0] OCTET STRING (SIZE(4)),
+      bgpLargeCommunity   [1] OCTET STRING (SIZE(12))
+   }
+
+   END
+
+2.2.  The DOA eContentType
+
+   The eContentType for a DOA is defined as id-ct-
+   discardOriginAttestation as specified in Section 2.1.
+
+   This OID MUST appear both within the eContentType in the
+   encapContentInfo object as well as the ContentType signed attribute
+   in the signerInfo object (see [RFC6488]).
+
+2.3.  The DOA eContent
+
+   The content of a DOA is formally defined as DiscardOriginAttestation
+   as specified in Section 2.1
+
+2.3.1.  version
+
+   The version number of the DiscardOriginAttestation MUST be 0.
+
+2.3.2.  ipAddrBlocks
+
+   TODO
+
+2.3.3.  originAsID
+
+   TODO
+
+2.3.4.  peerAsIDs
+
+   TODO
+
+2.3.5.  communities
+
+   TODO
+
+3.  DOA Validation
+
+   To validate a DOA the relying party MUST perform all the validation
+   checks specified in [RFC6488] as well as the following additional
+   DOA-specific validation step:
+
+   *  The IP delegation extension [RFC3779] MUST be present in the end-
+      entity certificate (contained in the DOA), and every IP address
+      prefix present in the ipAddrBlocks component of the DOA eContent
+      is contained within the set of IP addresses specified in the EE
+      certificate&#39;s IP address delegation extension.
+
+4.  BGP Discard Route Matching
+
+   TODO: Seperate document?
+
+5.  Operational Considerations
+
+   TODO
+
+6.  Security Considerations
+
+   TODO
+
+7.  Implementation status
+
+   This section is to be removed before publishing as an RFC.
+
+   This section records the status of known implementations of the
+   protocol defined by this specification at the time of posting of this
+   Internet-Draft, and is based on a proposal described in RFC 7942.
+   The description of implementations in this section is intended to
+   assist the IETF in its decision processes in progressing drafts to
+   RFCs.  Please note that the listing of any individual implementation
+   here does not imply endorsement by the IETF.  Furthermore, no effort
+   has been spent to verify the information presented here that was
+   supplied by IETF contributors.  This is not intended as, and must not
+   be construed to be, a catalog of available implementations or their
+   features.  Readers are advised to note that other implementations may
+   exist.
+
+   According to RFC 7942, &quot;this will allow reviewers and working groups
+   to assign due consideration to documents that have the benefit of
+   running code, which may serve as evidence of valuable experimentation
+   and feedback that have made the implemented protocols more mature.
+   It is up to the individual working groups to use this information as
+   they see fit&quot;.
+
+   *  A signer implementation [rpkimancer-doa] written in Python has
+      been developed by Ben Maddison.
+
+8.  IANA Considerations
+
+8.1.  SMI Security for S/MIME CMS Module Identifier
+      (1.2.840.113549.1.9.16.0)
+
+   The IANA is requested to register the following entry for this
+   document in the &quot;SMI Security for S/MIME CMS Module Identifier
+   (1.2.840.113549.1.9.16.0)&quot; registry:
+
+   Decimal   Description                      References
+   -----------------------------------------------------------------------------
+   [TBD]     id-mod-rpkiDOA                   [draft-spaghetti-sidrops-rpki-doa]
+
+
+   Upon publication of this document, IANA is requested to reference the
+   RFC publication instead of this draft.
+
+8.2.  SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)
+
+   The IANA is requested to register the following entry for this
+   document in the &quot;SMI Security for S/MIME CMS Content Type
+   (1.2.840.113549.1.9.16.1)&quot; registry:
+
+   Decimal   Description                      References
+   -----------------------------------------------------------------------------
+   [TBD]     id-ct-discardOriginAttestation   [draft-spaghetti-sidrops-rpki-doa]
+
+
+   Upon publication of this document, IANA is requested to reference the
+   RFC publication instead of this draft.
+
+8.3.  RPKI Signed Objects registry
+
+   The IANA is requested to register the OID for the RPKI Discard Origin
+   Attestation in the &quot;RPKI Signed Objects&quot; registry ([RFC6488]) as
+   follows:
+
+      Name          OID                          Reference
+      ----------------------------------------------------
+      DOA           1.2.840.113549.1.9.16.1.TBD  [RFC-TBD]
+
+
+8.4.  RPKI Repository Name Schemes registry
+
+   The IANA is requested to register the RPKI Discard Origin Attestation
+   file extension in the &quot;RPKI Repository Name Schemes&quot; registry
+   ([RFC6481]) as follows:
+
+      Filename Extension  RPKI Object                  Reference
+      ----------------------------------------------------------
+      .doa                Discard Origin Attestation   [RFC-TBD]
+
+
+8.5.  Media Types registry
+
+   The IANA is requested to register the media type application/rpki-doa
+   in the &quot;Media Types&quot; registry ([RFC6838]) as follows:
+
+   Type name: application
+   Subtype name: rpki-doa
+   Required parameters: None
+   Optional parameters: None
+   Encoding considerations: binary
+   Security considerations: Carries an RPKI Discard Origin Attestation
+                            [RFC-TBD].
+   Interoperability considerations: None
+   Published specification: This document.
+   Applications that use this media type: RPKI operators.
+   Additional information:
+     Content: This media type is a signed object, as defined
+              in [RFC6488], which contains a payload of a set of matching
+              criteria as defined above in [RFC-TBD].
+     Magic number(s): None
+     File extension(s): .doa
+     Macintosh file type code(s):
+   Person &amp; email address to contact for further information:
+     Job Snijders &lt;job@fastly.com&gt;
+   Intended usage: COMMON
+   Restrictions on usage: None
+   Author: Job Snijders &lt;job@fastly.com&gt;
+   Change controller: Job Snijders &lt;job@fastly.com&gt;
+
+
+9.  References
+
+9.1.  Normative References
+
+   [RFC2119]  Bradner, S., &quot;Key words for use in RFCs to Indicate
+              Requirement Levels&quot;, BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              &lt;https://www.rfc-editor.org/info/rfc2119&gt;.
+
+   [RFC3779]  Lynn, C., Kent, S., and K. Seo, &quot;X.509 Extensions for IP
+              Addresses and AS Identifiers&quot;, RFC 3779,
+              DOI 10.17487/RFC3779, June 2004,
+              &lt;https://www.rfc-editor.org/info/rfc3779&gt;.
+
+   [RFC5652]  Housley, R., &quot;Cryptographic Message Syntax (CMS)&quot;, STD 70,
+              RFC 5652, DOI 10.17487/RFC5652, September 2009,
+              &lt;https://www.rfc-editor.org/info/rfc5652&gt;.
+
+   [RFC6481]  Huston, G., Loomans, R., and G. Michaelson, &quot;A Profile for
+              Resource Certificate Repository Structure&quot;, RFC 6481,
+              DOI 10.17487/RFC6481, February 2012,
+              &lt;https://www.rfc-editor.org/info/rfc6481&gt;.
+
+   [RFC6488]  Lepinski, M., Chi, A., and S. Kent, &quot;Signed Object
+              Template for the Resource Public Key Infrastructure
+              (RPKI)&quot;, RFC 6488, DOI 10.17487/RFC6488, February 2012,
+              &lt;https://www.rfc-editor.org/info/rfc6488&gt;.
+
+   [RFC6838]  Freed, N., Klensin, J., and T. Hansen, &quot;Media Type
+              Specifications and Registration Procedures&quot;, BCP 13,
+              RFC 6838, DOI 10.17487/RFC6838, January 2013,
+              &lt;https://www.rfc-editor.org/info/rfc6838&gt;.
+
+   [RFC8174]  Leiba, B., &quot;Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words&quot;, BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, &lt;https://www.rfc-editor.org/info/rfc8174&gt;.
+
+9.2.  Informative References
+
+   [RFC6480]  Lepinski, M. and S. Kent, &quot;An Infrastructure to Support
+              Secure Internet Routing&quot;, RFC 6480, DOI 10.17487/RFC6480,
+              February 2012, &lt;https://www.rfc-editor.org/info/rfc6480&gt;.
+
+   [rpkimancer-doa]
+              Maddison, B., &quot;rpkimancer-doa&quot;, June 2021,
+              &lt;https://pypi.org/project/rpkimancer-doa/&gt;.
+
+Appendix A.  Acknowledgements
+
+   TODO
+
+Appendix B.  Document Changelog
+
+   This section is to be removed before publishing as an RFC.
+
+B.1.  Individual Submission Phase
+
+
+Authors&#39; Addresses
+
+   Job Snijders
+   Fastly
+   Amsterdam
+   Netherlands
+
+   Email: job@fastly.com
+
+
+   Mikael Abrahamsson
+   NTT Ltd.
+   Stockholm
+   Sweden
+
+   Email: mikael@swm.pp.se
+
+
+   Ben Maddison
+   Workonline Communications
+   Cape Town
+   South Africa
+
+   Email: benm@workonline.africa
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2021, Ben Maddison.
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.
+  </div>
+  
+  </body>
+</html>

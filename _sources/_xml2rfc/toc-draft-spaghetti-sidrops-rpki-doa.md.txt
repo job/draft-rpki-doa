@@ -1,0 +1,7 @@
+# `draft-spaghetti-sidrops-rpki-doa`
+
+:::{toctree}
+
+toc-draft-spaghetti-sidrops-rpki-doa-branches
+toc-draft-spaghetti-sidrops-rpki-doa-diffs
+:::
