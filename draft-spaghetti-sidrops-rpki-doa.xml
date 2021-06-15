@@ -21,7 +21,7 @@
   <front>
 
     <title abbrev="RPKI DOA">
-      Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Attestations (DOA)
+      Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Authorizations (DOA)
     </title>
 
     <seriesInfo name="Internet-Draft" value="draft-spaghetti-sidrops-rpki-doa-00"/>
@@ -67,7 +67,7 @@
 
     <abstract>
       <t>
-        This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Attestations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
+        This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
         A DOA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block with a set of Border Gateway Protocol (BGP) Communities to signal a request to discard any traffic destined towards the tagged IP prefix.
       </t>
     </abstract>
@@ -86,7 +86,7 @@
     <section anchor="intro">
       <name>Introduction</name>
       <t>
-        This document defines a Cryptographic Message Syntax (CMS) <xref target="RFC5652"/> profile for Discard Origin Attestations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <xref target="RFC6480"/>.
+        This document defines a Cryptographic Message Syntax (CMS) <xref target="RFC5652"/> profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <xref target="RFC6480"/>.
       </t>
       <t>
         TODO: Purpose - to authorise origination of blackhole routes, and signal the properties that such routes should have when received at an eBGP border.
@@ -110,12 +110,12 @@
         <t>
           The following ASN.1 module specifies the encapContentInfo component for DOA objects:
         </t>
-        <sourcecode type="asn.1" src="RpkiDiscardOriginAttestation-2021.asn"/>
+        <sourcecode type="asn.1" src="RpkiDiscardOriginAuthorization-2021.asn"/>
       </section>
       <section anchor="econtent_type">
         <name>The DOA eContentType</name>
         <t>
-          The eContentType for a DOA is defined as id-ct-discardOriginAttestation as specified in <xref target="asn1_mod"/>.
+          The eContentType for a DOA is defined as id-ct-discardOriginAuthorization as specified in <xref target="asn1_mod"/>.
         </t>
         <t>
           This OID MUST appear both within the eContentType in the encapContentInfo object as well as the ContentType signed attribute in the signerInfo object (see <xref target="RFC6488"/>).
@@ -124,12 +124,12 @@
       <section anchor="econtent">
         <name>The DOA eContent</name>
         <t>
-          The content of a DOA is formally defined as DiscardOriginAttestation as specified in <xref target="asn1_mod"/>
+          The content of a DOA is formally defined as DiscardOriginAuthorization as specified in <xref target="asn1_mod"/>
         </t>
         <section>
           <name>version</name>
           <t>
-            The version number of the DiscardOriginAttestation MUST be 0.
+            The version number of the DiscardOriginAuthorization MUST be 0.
           </t>
         </section>
         <section>
@@ -242,7 +242,7 @@
 <![CDATA[
    Decimal   Description                      References
    -----------------------------------------------------------------------------
-   [TBD]     id-ct-discardOriginAttestation   [draft-spaghetti-sidrops-rpki-doa]
+   [TBD]     id-ct-discardOriginAuthorization   [draft-spaghetti-sidrops-rpki-doa]
 ]]>
         </artwork>
         <t>
@@ -253,7 +253,7 @@
       <section>
         <name>RPKI Signed Objects registry</name>
         <t>
-          The IANA is requested to register the OID for the RPKI Discard Origin Attestation in the "RPKI Signed Objects" registry (<xref target="RFC6488"/>) as follows:
+          The IANA is requested to register the OID for the RPKI Discard Origin Authorization in the "RPKI Signed Objects" registry (<xref target="RFC6488"/>) as follows:
         </t>
         <artwork>
 <![CDATA[
@@ -267,13 +267,13 @@
       <section>
         <name>RPKI Repository Name Schemes registry</name>
         <t>
-          The IANA is requested to register the RPKI Discard Origin Attestation file extension in the "RPKI Repository Name Schemes" registry (<xref target="RFC6481"/>) as follows:
+          The IANA is requested to register the RPKI Discard Origin Authorization file extension in the "RPKI Repository Name Schemes" registry (<xref target="RFC6481"/>) as follows:
         </t>
         <artwork>
 <![CDATA[
    Filename Extension  RPKI Object                  Reference
    ----------------------------------------------------------
-   .doa                Discard Origin Attestation   [RFC-TBD]
+   .doa                Discard Origin Authorization   [RFC-TBD]
 ]]>
         </artwork>
       </section>
@@ -290,7 +290,7 @@
    Required parameters: None
    Optional parameters: None
    Encoding considerations: binary
-   Security considerations: Carries an RPKI Discard Origin Attestation
+   Security considerations: Carries an RPKI Discard Origin Authorization
                             [RFC-TBD].
    Interoperability considerations: None
    Published specification: This document.

@@ -25,7 +25,7 @@ _buildtime = datetime.datetime.utcnow()
 
 # -- Project Information
 
-project = "RPKI Discard Origin Attestations"
+project = "RPKI Discard Origin Authorizations"
 author = _dist.metadata["author"]
 
 _from_year = 2021
@@ -83,5 +83,5 @@ myst_enable_extensions = [
 # -- xml2rfc document generation
 
 xml2rfc_drafts = ["draft-spaghetti-sidrops-rpki-doa"]
-xml2rfc_sources = ["RpkiDiscardOriginAttestation-2021.asn"]
+xml2rfc_sources = ["RpkiDiscardOriginAuthorization-2021.asn"]
 xml2rfc_autogen_tag_re = r"^\d\d$"

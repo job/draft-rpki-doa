@@ -17,7 +17,7 @@ import logging
 from typing import Any, Dict, Iterable, Optional, Tuple
 
 from rpkimancer.asn1 import Content
-from rpkimancer.asn1.mod import RpkiDiscardOriginAttestation_2021
+from rpkimancer.asn1.mod import RpkiDiscardOriginAuthorization_2021
 from rpkimancer.resources import (AFI, IPNetwork,
                                   IpResourcesInfo, net_to_bitstring)
 from rpkimancer.sigobj.base import EncapsulatedContent, SignedObject
@@ -33,7 +33,7 @@ IPListRangeInfo = Iterable[DoaNetworkInfo]
 class IPListRange(Content):
     """ASN.1 IPListRange type."""
 
-    content_syntax = RpkiDiscardOriginAttestation_2021.IPListRange
+    content_syntax = RpkiDiscardOriginAuthorization_2021.IPListRange
 
     def __init__(self, ip_addr_blocks: IPListRangeInfo):
         """Initialise IPListRange instance."""
@@ -49,11 +49,11 @@ class IPListRange(Content):
         super().__init__(data)
 
 
-class DiscardOriginAttestationEContent(EncapsulatedContent):
-    """encapContentInfo for RPKI Discard Origin Attestations."""
+class DiscardOriginAuthorizationEContent(EncapsulatedContent):
+    """encapContentInfo for RPKI Discard Origin Authorizations."""
 
-    content_type = RpkiDiscardOriginAttestation_2021.id_ct_discardOriginAttestation  # noqa: E501
-    content_syntax = RpkiDiscardOriginAttestation_2021.DiscardOriginAttestation
+    content_type = RpkiDiscardOriginAuthorization_2021.id_ct_discardOriginAuthorization  # noqa: E501
+    content_syntax = RpkiDiscardOriginAuthorization_2021.DiscardOriginAuthorization
     file_ext = "doa"
     as_resources = None
 
@@ -81,8 +81,8 @@ class DiscardOriginAttestationEContent(EncapsulatedContent):
         return self._ip_resources
 
 
-class DiscardOriginAttestation(SignedObject,
-                               econtent_type=RpkiDiscardOriginAttestation_2021.ct_discardOriginAttestation):  # noqa: E501
-    """CMS ASN.1 ContentInfo for RPKI Discard Origin Attestations."""
+class DiscardOriginAuthorization(SignedObject,
+                               econtent_type=RpkiDiscardOriginAuthorization_2021.ct_discardOriginAuthorization):  # noqa: E501
+    """CMS ASN.1 ContentInfo for RPKI Discard Origin Authorizations."""
 
-    econtent_cls = DiscardOriginAttestationEContent
+    econtent_cls = DiscardOriginAuthorizationEContent

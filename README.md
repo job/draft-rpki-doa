@@ -9,7 +9,7 @@ Work in progress repository for Internet-Draft draft-spaghetti-sidrops-rpki-doa
 The source files for the Internet-Draft documents are:
 
 - `draft-spaghetti-sidrops-rpki-doa.xml`
-- `RpkiDiscardOriginAttestation-2021.asn`
+- `RpkiDiscardOriginAuthorization-2021.asn`
 
 To regenerate the text and HTML versions after making changes, run:
 

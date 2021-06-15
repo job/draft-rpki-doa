@@ -3,12 +3,12 @@
 :::{eval-rst}
 .. automodule:: rpkimancer_doa.sigobj
 
-.. autoclass:: DiscardOriginAttestation
+.. autoclass:: DiscardOriginAuthorization
     :members:
     :inherited-members:
     :show-inheritance:
 
-.. autoclass:: DiscardOriginAttestationEContent
+.. autoclass:: DiscardOriginAuthorizationEContent
     :members:
     :inherited-members:
     :show-inheritance:

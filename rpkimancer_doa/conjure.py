@@ -9,7 +9,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under
 # the License.
-"""rpkincant conjure plugins for RPKI Discard Origin Attestations."""
+"""rpkincant conjure plugins for RPKI Discard Origin Authorizations."""
 
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ META_COMMUNITY = "<community>"
 
 
 class ConjureDoa(ConjurePlugin):
-    """rpkincant conjure plugin for RPKI Discard Origin Attestations."""
+    """rpkincant conjure plugin for RPKI Discard Origin Authorizations."""
 
     def init_parser(self) -> None:
         """Set up command line argument parser."""
@@ -70,9 +70,9 @@ class ConjureDoa(ConjurePlugin):
             *args: Any, **kwargs: Any) -> PluginReturn:
         """Run with the given arguments."""
         # create DOA object
-        from .sigobj import DiscardOriginAttestation
+        from .sigobj import DiscardOriginAuthorization
         log.info("creating DOA object")
-        DiscardOriginAttestation(issuer=ca,
+        DiscardOriginAuthorization(issuer=ca,
                                  ip_addr_blocks=parsed_args.doa_networks,
                                  origin_as=parsed_args.doa_origin_as,
                                  peer_as_set=parsed_args.doa_peer_as,

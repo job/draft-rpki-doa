@@ -1,4 +1,4 @@
-<DiscardOriginAttestation>
+<DiscardOriginAuthorization>
 
   <asID>
     15562
@@ -32,4 +32,4 @@
       </bgpCommunity>
   </communities>
 
-</DiscardOriginAttestation>
+</DiscardOriginAuthorization>

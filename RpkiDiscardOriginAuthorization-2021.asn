@@ -1,4 +1,4 @@
-RpkiDiscardOriginAttestation-2021
+RpkiDiscardOriginAuthorization-2021
  { iso(1) member-body(2) us(840) rsadsi(113549)
    pkcs(1) pkcs9(9) smime(16) mod(0) TBD }
 
@@ -17,15 +17,15 @@ IMPORTS
      security(5) mechanisms(5) pkix(7) mod(0)
      id-mod-ip-addr-and-as-ident(30) } ;
 
-ct-discardOriginAttestation CONTENT-TYPE ::=
-   { TYPE DiscardOriginAttestation IDENTIFIED BY
-     id-ct-discardOriginAttestation }
+ct-discardOriginAuthorization CONTENT-TYPE ::=
+   { TYPE DiscardOriginAuthorization IDENTIFIED BY
+     id-ct-discardOriginAuthorization }
 
-id-ct-discardOriginAttestation OBJECT IDENTIFIER ::=
+id-ct-discardOriginAuthorization OBJECT IDENTIFIER ::=
    { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
      pkcs-9(9) id-smime(16) id-ct(1) TBD }
 
-DiscardOriginAttestation ::= SEQUENCE {
+DiscardOriginAuthorization ::= SEQUENCE {
    version             [0] INTEGER DEFAULT 0,
    ipAddrBlocks        IPListRange,
    originAsID          ASId,
