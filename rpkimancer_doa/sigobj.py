@@ -14,7 +14,6 @@
 from __future__ import annotations
 
 import logging
-
 from typing import Any, Dict, Iterable, Optional, Tuple
 
 from rpkimancer.asn1 import Content
@@ -40,9 +39,9 @@ class IPListRange(Content):
         """Initialise IPListRange instance."""
         data = list()
         for network, len_range in ip_addr_blocks:
-            item = {"addressFamily": AFI[network.version],
-                    "addressOrRange": ("addressPrefix",
-                                       net_to_bitstring(network))}
+            item: Dict[str, Any] = {"addressFamily": AFI[network.version],
+                                    "addressOrRange": ("addressPrefix",
+                                                       net_to_bitstring(network))}  # noqa: E501
             if len_range is not None:
                 item["prefixLengthRange"] = {"minLength": len_range[0],
                                              "maxLength": len_range[1]}

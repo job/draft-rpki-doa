@@ -14,9 +14,10 @@
 from __future__ import annotations
 
 import dataclasses
+from typing import Generator, Tuple
 
 
-def from_str(community_str: str):
+def from_str(community_str: str) -> BgpCommunity:
     """Construct a community from a string representation."""
     components = [int(c) for c in community_str.split(":")]
     if len(components) == 2:
@@ -33,22 +34,27 @@ class BgpCommunity:
     component_len: int
     choice_label: str
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[int, None, None]:
+        """Iterate over components."""
         for c in dataclasses.astuple(self):
             yield c
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Get `str` representation."""
         return ":".join(str(c) for c in self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """Get `repr` representation."""
         return self.__str__()
 
-    def to_bytes(self):
+    def to_bytes(self) -> bytes:
+        """Get community value as bytes."""
         return b"".join(c.to_bytes(length=self.component_len,
                                    byteorder="big")
                         for c in self)
 
-    def choice_value(self):
+    def choice_value(self) -> Tuple[str, bytes]:
+        """Get (type, value) tuple for ASN.1 encoding."""
         return (self.choice_label, self.to_bytes())
 
 

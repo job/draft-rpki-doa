@@ -15,7 +15,6 @@ from __future__ import annotations
 
 import ipaddress
 import logging
-
 from typing import Any, TYPE_CHECKING
 
 from rpkimancer.cli import Args
