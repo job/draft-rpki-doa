@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Object Prototyping API Reference &#8212; RPKI Discard Origin Attestations 0.1.dev14 documentation</title>
+    <title>Object Prototyping API Reference &#8212; RPKI Discard Origin Authorizations 0.1.dev17 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/readable.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="_xml2rfc/toc-draft-spaghetti-sidrops-rpki-doa-diffs.html" title="changes"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RPKI Discard Origin Attestations 0.1.dev14 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RPKI Discard Origin Authorizations 0.1.dev17 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Object Prototyping API Reference</a></li> 
       </ul>
     </div>  
@@ -51,10 +51,10 @@
 <span id="object-prototyping-api-reference"></span><h1>Object Prototyping API Reference<a class="headerlink" href="#module-rpkimancer_doa.sigobj" title="Permalink to this headline">¶</a></h1>
 <p>RPKI DOA implementation - draft-spaghetti-sidrops-rpki-doa.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rpkimancer_doa.sigobj.</span></span><span class="sig-name descname"><span class="pre">DiscardOriginAttestation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">issuer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rpkimancer_doa.sigobj.</span></span><span class="sig-name descname"><span class="pre">DiscardOriginAuthorization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">issuer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://benmaddison.github.io/rpkimancer/main/generated/rpkimancer.sigobj.base.html#rpkimancer.sigobj.base.SignedObject" title="(in rpkimancer v0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">rpkimancer.sigobj.base.SignedObject</span></code></a></p>
-<p>CMS ASN.1 ContentInfo for RPKI Discard Origin Attestations.</p>
+<p>CMS ASN.1 ContentInfo for RPKI Discard Origin Authorizations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -69,14 +69,14 @@
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.econtent_cls">
-<span class="sig-name descname"><span class="pre">econtent_cls</span></span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.econtent_cls" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent" title="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent"><code class="xref py py-class docutils literal notranslate"><span class="pre">rpkimancer_doa.sigobj.DiscardOriginAttestationEContent</span></code></a></p>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.econtent_cls">
+<span class="sig-name descname"><span class="pre">econtent_cls</span></span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.econtent_cls" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent" title="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent"><code class="xref py py-class docutils literal notranslate"><span class="pre">rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent</span></code></a></p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.constructed">
-<span class="sig-name descname"><span class="pre">constructed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.constructed" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.constructed">
+<span class="sig-name descname"><span class="pre">constructed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.constructed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide a context manager to mediate the global pycrates object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -89,38 +89,38 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.content_data">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">content_data</span></span><em class="property"><span class="pre">:</span> <span class="pre">Any</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.content_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.content_data">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">content_data</span></span><em class="property"><span class="pre">:</span> <span class="pre">Any</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.content_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the underlying python data for this type instance.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.econtent">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">econtent</span></span><em class="property"><span class="pre">:</span> <span class="pre">rpkimancer.sigobj.base.EncapsulatedContent</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.econtent" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.econtent">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">econtent</span></span><em class="property"><span class="pre">:</span> <span class="pre">rpkimancer.sigobj.base.EncapsulatedContent</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.econtent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the Signed Object’s eContent.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.econtent_info">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">econtent_info</span></span><em class="property"><span class="pre">:</span> <span class="pre">rpkimancer.cms.EncapsulatedContentInfo</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.econtent_info" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.econtent_info">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">econtent_info</span></span><em class="property"><span class="pre">:</span> <span class="pre">rpkimancer.cms.EncapsulatedContentInfo</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.econtent_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the Signed Object’s encapContentInfo.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.ee_cert_cls">
-<span class="sig-name descname"><span class="pre">ee_cert_cls</span></span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.ee_cert_cls" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.ee_cert_cls">
+<span class="sig-name descname"><span class="pre">ee_cert_cls</span></span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.ee_cert_cls" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <a class="reference external" href="https://benmaddison.github.io/rpkimancer/main/generated/rpkimancer.cert.ee.html#rpkimancer.cert.ee.EECertificate" title="(in rpkimancer v0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">rpkimancer.cert.ee.EECertificate</span></code></a></p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.file_name">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.file_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.file_name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.file_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct the file name of the SignedObject.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.from_data">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.from_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.from_data">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.from_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an instance from python data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -133,8 +133,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.from_der">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_der</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.from_der" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.from_der">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_der</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.from_der" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an instance from DER encoded data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -147,8 +147,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.publish">
-<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pub_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.publish" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.publish">
+<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pub_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.publish" title="Permalink to this definition">¶</a></dt>
 <dd><p>Publish the SignedObject artifact as a DER file in the PP.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -166,8 +166,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.register_econtent_type">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">register_econtent_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">econtent_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.register_econtent_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.register_econtent_type">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">register_econtent_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">econtent_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.register_econtent_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add CONTENT-TYPE instance to eContentType constraint set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -183,8 +183,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.to_asn1">
-<span class="sig-name descname"><span class="pre">to_asn1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.to_asn1" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_asn1">
+<span class="sig-name descname"><span class="pre">to_asn1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_asn1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as ASN.1 data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -194,8 +194,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.to_der">
-<span class="sig-name descname"><span class="pre">to_der</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.to_der" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_der">
+<span class="sig-name descname"><span class="pre">to_der</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_der" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as DER.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -205,8 +205,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.to_internal">
-<span class="sig-name descname"><span class="pre">to_internal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.to_internal" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_internal">
+<span class="sig-name descname"><span class="pre">to_internal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_internal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize using internal python repr.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -216,8 +216,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.to_jer">
-<span class="sig-name descname"><span class="pre">to_jer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.to_jer" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_jer">
+<span class="sig-name descname"><span class="pre">to_jer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_jer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as JER.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -227,8 +227,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.to_json">
-<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.to_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as JSON.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -238,8 +238,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestation.to_txt">
-<span class="sig-name descname"><span class="pre">to_txt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestation.to_txt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_txt">
+<span class="sig-name descname"><span class="pre">to_txt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorization.to_txt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get default text serialization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -251,10 +251,10 @@
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rpkimancer_doa.sigobj.</span></span><span class="sig-name descname"><span class="pre">DiscardOriginAttestationEContent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip_addr_blocks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_as</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_as_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">communities</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rpkimancer_doa.sigobj.</span></span><span class="sig-name descname"><span class="pre">DiscardOriginAuthorizationEContent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip_addr_blocks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_as</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_as_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">communities</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://benmaddison.github.io/rpkimancer/main/generated/rpkimancer.sigobj.base.html#rpkimancer.sigobj.base.EncapsulatedContent" title="(in rpkimancer v0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">rpkimancer.sigobj.base.EncapsulatedContent</span></code></a></p>
-<p>encapContentInfo for RPKI Discard Origin Attestations.</p>
+<p>encapContentInfo for RPKI Discard Origin Authorizations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -270,14 +270,14 @@
 </dd>
 </dl>
 <dl class="py property">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.ip_resources">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">ip_resources</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional[Iterable[Union[Tuple[Literal[4,</span> <span class="pre">6],</span> <span class="pre">Literal[INHERIT]],</span> <span class="pre">ipaddress.IPv4Network,</span> <span class="pre">ipaddress.IPv6Network]]]</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.ip_resources" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.ip_resources">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">ip_resources</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional[Iterable[Union[Tuple[Literal[4,</span> <span class="pre">6],</span> <span class="pre">Literal[INHERIT]],</span> <span class="pre">ipaddress.IPv4Network,</span> <span class="pre">ipaddress.IPv6Network]]]</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.ip_resources" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the IP Address Resources covered by this DOA.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.constructed">
-<span class="sig-name descname"><span class="pre">constructed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.constructed" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.constructed">
+<span class="sig-name descname"><span class="pre">constructed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.constructed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide a context manager to mediate the global pycrates object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -290,14 +290,14 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.content_data">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">content_data</span></span><em class="property"><span class="pre">:</span> <span class="pre">Any</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.content_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.content_data">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">content_data</span></span><em class="property"><span class="pre">:</span> <span class="pre">Any</span></em><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.content_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the underlying python data for this type instance.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.digest">
-<span class="sig-name descname"><span class="pre">digest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.digest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.digest">
+<span class="sig-name descname"><span class="pre">digest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.digest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the message digest over the DER-encoded eContent.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -307,14 +307,14 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.digest_algorithm">
-<span class="sig-name descname"><span class="pre">digest_algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usedforsecurity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.digest_algorithm" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.digest_algorithm">
+<span class="sig-name descname"><span class="pre">digest_algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usedforsecurity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.digest_algorithm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a sha256 hash object; optionally initialized with a string</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.from_data">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.from_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.from_data">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.from_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an instance from python data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -327,8 +327,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.from_der">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_der</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.from_der" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.from_der">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_der</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.from_der" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an instance from DER encoded data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -341,8 +341,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.signed_attrs">
-<span class="sig-name descname"><span class="pre">signed_attrs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.signed_attrs" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.signed_attrs">
+<span class="sig-name descname"><span class="pre">signed_attrs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.signed_attrs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct the signedAttrs value from the encapContentInfo.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -352,8 +352,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.signed_attrs_digest">
-<span class="sig-name descname"><span class="pre">signed_attrs_digest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.signed_attrs_digest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.signed_attrs_digest">
+<span class="sig-name descname"><span class="pre">signed_attrs_digest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.signed_attrs_digest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the message digest over the DER-encoded signedAttrs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -363,8 +363,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_asn1">
-<span class="sig-name descname"><span class="pre">to_asn1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_asn1" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_asn1">
+<span class="sig-name descname"><span class="pre">to_asn1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_asn1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as ASN.1 data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -374,8 +374,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_der">
-<span class="sig-name descname"><span class="pre">to_der</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_der" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_der">
+<span class="sig-name descname"><span class="pre">to_der</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_der" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as DER.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -385,8 +385,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_internal">
-<span class="sig-name descname"><span class="pre">to_internal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_internal" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_internal">
+<span class="sig-name descname"><span class="pre">to_internal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_internal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize using internal python repr.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -396,8 +396,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_jer">
-<span class="sig-name descname"><span class="pre">to_jer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_jer" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_jer">
+<span class="sig-name descname"><span class="pre">to_jer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_jer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as JER.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -407,8 +407,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_json">
-<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize as JSON.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -418,8 +418,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_txt">
-<span class="sig-name descname"><span class="pre">to_txt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAttestationEContent.to_txt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_txt">
+<span class="sig-name descname"><span class="pre">to_txt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rpkimancer_doa.sigobj.DiscardOriginAuthorizationEContent.to_txt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get default text serialization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>

@@ -1,4 +1,4 @@
-# RPKI Discard Origin Attestations
+# RPKI Discard Origin Authorizations
 
 ![sidrops](_static/b42_ipv6_loa.png)
 
