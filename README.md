@@ -1,5 +1,9 @@
 # draft-spaghetti-sidrops-rpki-doa
 
+RPKI Discard Origin Authorization. A mechanism to confirm whether a resource
+holder authorized a specific tuple of (peer AS, origin AS, prefix, prefixlength
+and BGP community) to signal a request to discard traffic.
+
 Work in progress repository for Internet-Draft draft-spaghetti-sidrops-rpki-doa
 
 ## Usage
