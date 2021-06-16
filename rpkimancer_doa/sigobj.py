@@ -53,7 +53,8 @@ class DiscardOriginAuthorizationEContent(EncapsulatedContent):
     """encapContentInfo for RPKI Discard Origin Authorizations."""
 
     content_type = RpkiDiscardOriginAuthorization_2021.id_ct_discardOriginAuthorization  # noqa: E501
-    content_syntax = RpkiDiscardOriginAuthorization_2021.DiscardOriginAuthorization
+    content_syntax = RpkiDiscardOriginAuthorization_2021.DiscardOriginAuthorization  # noqa: E501
+
     file_ext = "doa"
     as_resources = None
 
@@ -81,8 +82,7 @@ class DiscardOriginAuthorizationEContent(EncapsulatedContent):
         return self._ip_resources
 
 
-class DiscardOriginAuthorization(SignedObject,
-                               econtent_type=RpkiDiscardOriginAuthorization_2021.ct_discardOriginAuthorization):  # noqa: E501
+class DiscardOriginAuthorization(SignedObject, econtent_type=RpkiDiscardOriginAuthorization_2021.ct_discardOriginAuthorization):  # noqa: E501
     """CMS ASN.1 ContentInfo for RPKI Discard Origin Authorizations."""
 
     econtent_cls = DiscardOriginAuthorizationEContent

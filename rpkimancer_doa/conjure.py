@@ -73,10 +73,10 @@ class ConjureDoa(ConjurePlugin):
         from .sigobj import DiscardOriginAuthorization
         log.info("creating DOA object")
         DiscardOriginAuthorization(issuer=ca,
-                                 ip_addr_blocks=parsed_args.doa_networks,
-                                 origin_as=parsed_args.doa_origin_as,
-                                 peer_as_set=parsed_args.doa_peer_as,
-                                 communities=parsed_args.doa_communities)
+                                   ip_addr_blocks=parsed_args.doa_networks,
+                                   origin_as=parsed_args.doa_origin_as,
+                                   peer_as_set=parsed_args.doa_peer_as,
+                                   communities=parsed_args.doa_communities)
         return None
 
     @staticmethod
