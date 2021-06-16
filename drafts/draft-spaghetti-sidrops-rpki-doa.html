@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Attestations (DOA)</title>
+<title>Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Authorizations (DOA)</title>
 <meta content="Job Snijders" name="author">
 <meta content="Mikael Abrahamsson" name="author">
 <meta content="Ben Maddison" name="author">
 <meta content="
        
-        This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Attestations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
+        This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
         A DOA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block with a set of Border Gateway Protocol (BGP) Communities to signal a request to discard any traffic destined towards the tagged IP prefix.
        
     " name="description">
@@ -1220,11 +1220,11 @@ li > p:last-of-type {
 </dd>
 </dl>
 </div>
-<h1 id="title">Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Attestations (DOA)</h1>
+<h1 id="title">Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Authorizations (DOA)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">
-        This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Attestations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
+        This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
         A DOA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block with a set of Border Gateway Protocol (BGP) Communities to signal a request to discard any traffic destined towards the tagged IP prefix.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note" id="section-note.1">
@@ -1281,99 +1281,99 @@ li > p:last-of-type {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents-2">
 <a href="#name-table-of-contents-2" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction-2" class="xref">Introduction</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.2">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-doa-encapsulatedcontentinfo-2" class="xref">DOA EncapsulatedContentInfo</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1">
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.2.2.1">
                 <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-asn1-module-2" class="xref">ASN.1 Module</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.2">
+              <li class="compact ulEmpty toc" id="section-toc.1-1.2.2.2">
                 <p id="section-toc.1-1.2.2.2.1" class="keepWithNext"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-the-doa-econtenttype-2" class="xref">The DOA eContentType</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.3">
+              <li class="compact ulEmpty toc" id="section-toc.1-1.2.2.3">
                 <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-the-doa-econtent-2" class="xref">The DOA eContent</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.2.2.3.2.1">
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.2.2.3.2.1">
                     <p id="section-toc.1-1.2.2.3.2.1.1"><a href="#section-2.3.1" class="xref">2.3.1</a>.  <a href="#name-version-2" class="xref">version</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.3.2.2">
+                  <li class="compact ulEmpty toc" id="section-toc.1-1.2.2.3.2.2">
                     <p id="section-toc.1-1.2.2.3.2.2.1"><a href="#section-2.3.2" class="xref">2.3.2</a>.  <a href="#name-ipaddrblocks-2" class="xref">ipAddrBlocks</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.3.2.3">
+                  <li class="compact ulEmpty toc" id="section-toc.1-1.2.2.3.2.3">
                     <p id="section-toc.1-1.2.2.3.2.3.1"><a href="#section-2.3.3" class="xref">2.3.3</a>.  <a href="#name-originasid-2" class="xref">originAsID</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.3.2.4">
+                  <li class="compact ulEmpty toc" id="section-toc.1-1.2.2.3.2.4">
                     <p id="section-toc.1-1.2.2.3.2.4.1"><a href="#section-2.3.4" class="xref">2.3.4</a>.  <a href="#name-peerasids-2" class="xref">peerAsIDs</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.3.2.5">
+                  <li class="compact ulEmpty toc" id="section-toc.1-1.2.2.3.2.5">
                     <p id="section-toc.1-1.2.2.3.2.5.1"><a href="#section-2.3.5" class="xref">2.3.5</a>.  <a href="#name-communities-2" class="xref">communities</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.3">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-doa-validation-2" class="xref">DOA Validation</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.4">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-bgp-discard-route-matching-2" class="xref">BGP Discard Route Matching</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.5">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-operational-considerations-2" class="xref">Operational Considerations</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.6">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations-2" class="xref">Security Considerations</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.7">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-implementation-status-2" class="xref">Implementation status</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.8">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-iana-considerations-2" class="xref">IANA Considerations</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.1">
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.8.2.1">
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-smi-security-for-s-mime-cms-m" class="xref">SMI Security for S/MIME CMS Module Identifier (1.2.840.113549.1.9.16.0)</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.2">
+              <li class="compact ulEmpty toc" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-smi-security-for-s-mime-cms-c" class="xref">SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.3">
+              <li class="compact ulEmpty toc" id="section-toc.1-1.8.2.3">
                 <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-rpki-signed-objects-registry" class="xref">RPKI Signed Objects registry</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.4">
+              <li class="compact ulEmpty toc" id="section-toc.1-1.8.2.4">
                 <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="xref">8.4</a>.  <a href="#name-rpki-repository-name-schemes" class="xref">RPKI Repository Name Schemes registry</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.5">
+              <li class="compact ulEmpty toc" id="section-toc.1-1.8.2.5">
                 <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="xref">8.5</a>.  <a href="#name-media-types-registry-2" class="xref">Media Types registry</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.9">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-references-2" class="xref">References</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.9.2.1">
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.9.2.1">
                 <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-normative-references-2" class="xref">Normative References</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.9.2.2">
+              <li class="compact ulEmpty toc" id="section-toc.1-1.9.2.2">
                 <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-informative-references-2" class="xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.10">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-acknowledgements-2" class="xref">Acknowledgements</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.11">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-document-changelog-2" class="xref">Document Changelog</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.11.2.1">
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.11.2.1">
                 <p id="section-toc.1-1.11.2.1.1"><a href="#section-b.1" class="xref">B.1</a>.  <a href="#name-individual-submission-phase-2" class="xref">Individual Submission Phase</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.12">
+          <li class="compact ulEmpty toc" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-authors-addresses-2" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
@@ -1386,7 +1386,7 @@ li > p:last-of-type {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction-2" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">
-        This document defines a Cryptographic Message Syntax (CMS) <span>[<a href="#RFC5652" class="xref">RFC5652</a>]</span> profile for Discard Origin Attestations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <span>[<a href="#RFC6480" class="xref">RFC6480</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+        This document defines a Cryptographic Message Syntax (CMS) <span>[<a href="#RFC5652" class="xref">RFC5652</a>]</span> profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <span>[<a href="#RFC6480" class="xref">RFC6480</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">
         TODO: Purpose - to authorise origination of blackhole routes, and signal the properties that such routes should have when received at an eBGP border.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">
@@ -1412,7 +1412,7 @@ li > p:last-of-type {
 <p id="section-2.1-1">
           The following ASN.1 module specifies the encapContentInfo component for DOA objects:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <div id="section-2.1-2">
-<pre class="sourcecode lang-asn.1">RpkiDiscardOriginAttestation-2021
+<pre class="sourcecode lang-asn.1">RpkiDiscardOriginAuthorization-2021
  { iso(1) member-body(2) us(840) rsadsi(113549)
    pkcs(1) pkcs9(9) smime(16) mod(0) TBD }
 
@@ -1431,15 +1431,15 @@ IMPORTS
      security(5) mechanisms(5) pkix(7) mod(0)
      id-mod-ip-addr-and-as-ident(30) } ;
 
-ct-discardOriginAttestation CONTENT-TYPE ::=
-   { TYPE DiscardOriginAttestation IDENTIFIED BY
-     id-ct-discardOriginAttestation }
+ct-discardOriginAuthorization CONTENT-TYPE ::=
+   { TYPE DiscardOriginAuthorization IDENTIFIED BY
+     id-ct-discardOriginAuthorization }
 
-id-ct-discardOriginAttestation OBJECT IDENTIFIER ::=
+id-ct-discardOriginAuthorization OBJECT IDENTIFIER ::=
    { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
      pkcs-9(9) id-smime(16) id-ct(1) TBD }
 
-DiscardOriginAttestation ::= SEQUENCE {
+DiscardOriginAuthorization ::= SEQUENCE {
    version             [0] INTEGER DEFAULT 0,
    ipAddrBlocks        IPListRange,
    originAsID          ASId,
@@ -1476,7 +1476,7 @@ END
 <a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-the-doa-econtenttype-2" class="section-name selfRef">The DOA eContentType</a>
         </h3>
 <p id="section-2.2-1">
-          The eContentType for a DOA is defined as id-ct-discardOriginAttestation as specified in <a href="#asn1_mod" class="xref">Section 2.1</a>.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+          The eContentType for a DOA is defined as id-ct-discardOriginAuthorization as specified in <a href="#asn1_mod" class="xref">Section 2.1</a>.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
 <p id="section-2.2-2">
           This OID MUST appear both within the eContentType in the encapContentInfo object as well as the ContentType signed attribute in the signerInfo object (see <span>[<a href="#RFC6488" class="xref">RFC6488</a>]</span>).<a href="#section-2.2-2" class="pilcrow">¶</a></p>
 </section>
@@ -1487,13 +1487,13 @@ END
 <a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-the-doa-econtent-2" class="section-name selfRef">The DOA eContent</a>
         </h3>
 <p id="section-2.3-1">
-          The content of a DOA is formally defined as DiscardOriginAttestation as specified in <a href="#asn1_mod" class="xref">Section 2.1</a><a href="#section-2.3-1" class="pilcrow">¶</a></p>
+          The content of a DOA is formally defined as DiscardOriginAuthorization as specified in <a href="#asn1_mod" class="xref">Section 2.1</a><a href="#section-2.3-1" class="pilcrow">¶</a></p>
 <section id="section-2.3.1">
           <h4 id="name-version-2">
 <a href="#section-2.3.1" class="section-number selfRef">2.3.1. </a><a href="#name-version-2" class="section-name selfRef">version</a>
           </h4>
 <p id="section-2.3.1-1">
-            The version number of the DiscardOriginAttestation MUST be 0.<a href="#section-2.3.1-1" class="pilcrow">¶</a></p>
+            The version number of the DiscardOriginAuthorization MUST be 0.<a href="#section-2.3.1-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-2.3.2">
           <h4 id="name-ipaddrblocks-2">
@@ -1623,7 +1623,7 @@ END
 
    Decimal   Description                      References
    -----------------------------------------------------------------------------
-   [TBD]     id-ct-discardOriginAttestation   [draft-spaghetti-sidrops-rpki-doa]
+   [TBD]     id-ct-discardOriginAuthorization   [draft-spaghetti-sidrops-rpki-doa]
 
 </pre><a href="#section-8.2-2" class="pilcrow">¶</a>
 </div>
@@ -1635,7 +1635,7 @@ END
 <a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-rpki-signed-objects-registry" class="section-name selfRef">RPKI Signed Objects registry</a>
         </h3>
 <p id="section-8.3-1">
-          The IANA is requested to register the OID for the RPKI Discard Origin Attestation in the "RPKI Signed Objects" registry (<span>[<a href="#RFC6488" class="xref">RFC6488</a>]</span>) as follows:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+          The IANA is requested to register the OID for the RPKI Discard Origin Authorization in the "RPKI Signed Objects" registry (<span>[<a href="#RFC6488" class="xref">RFC6488</a>]</span>) as follows:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-8.3-2">
 <pre>
 
@@ -1651,13 +1651,13 @@ END
 <a href="#section-8.4" class="section-number selfRef">8.4. </a><a href="#name-rpki-repository-name-schemes" class="section-name selfRef">RPKI Repository Name Schemes registry</a>
         </h3>
 <p id="section-8.4-1">
-          The IANA is requested to register the RPKI Discard Origin Attestation file extension in the "RPKI Repository Name Schemes" registry (<span>[<a href="#RFC6481" class="xref">RFC6481</a>]</span>) as follows:<a href="#section-8.4-1" class="pilcrow">¶</a></p>
+          The IANA is requested to register the RPKI Discard Origin Authorization file extension in the "RPKI Repository Name Schemes" registry (<span>[<a href="#RFC6481" class="xref">RFC6481</a>]</span>) as follows:<a href="#section-8.4-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-8.4-2">
 <pre>
 
    Filename Extension  RPKI Object                  Reference
    ----------------------------------------------------------
-   .doa                Discard Origin Attestation   [RFC-TBD]
+   .doa                Discard Origin Authorization   [RFC-TBD]
 
 </pre><a href="#section-8.4-2" class="pilcrow">¶</a>
 </div>
@@ -1676,7 +1676,7 @@ END
    Required parameters: None
    Optional parameters: None
    Encoding considerations: binary
-   Security considerations: Carries an RPKI Discard Origin Attestation
+   Security considerations: Carries an RPKI Discard Origin Authorization
                             [RFC-TBD].
    Interoperability considerations: None
    Published specification: This document.
