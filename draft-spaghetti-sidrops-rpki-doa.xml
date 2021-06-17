@@ -89,7 +89,7 @@
         This document defines a Cryptographic Message Syntax (CMS) <xref target="RFC5652"/> profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <xref target="RFC6480"/>.
       </t>
       <t>
-	DOAs can be used to validate whether incoming BGP route announcements carrying specific BGP Communities are meant to signify a request to discard IP traffic towards the IP destination carried in the BGP route.
+        DOAs can be used to validate whether incoming BGP route announcements carrying specific BGP Communities are meant to signify a request to discard IP traffic towards the IP destination carried in the BGP route.
         This enhances the concepts of <xref target="RFC3882"/> and <xref target="RFC7999"/>.
       </t>
     </section>
@@ -146,13 +146,13 @@
           <t>
             The peerAsIDs field contains the AS number that is authorized to originate routes intended to signal a request to discard IP traffic for the given IP address prefixes.
             The peerAsIDs does have to be contained by the resources listed on the EE certificate.
-	    If no peerAsIDs are set, any neighboring ASNs MUST only accept the RTBH request from the listed asID.
+            ASNs MUST only accept the RTBH request from the listed asID.
             The peerAsIDs field allows DOAs to be used to validate RTBH with one AS hop between originator and receipient.
           </t>
         </section>
         <section>
           <name>communities</name>
-	  <t>
+          <t>
             The communities field contains the Classic BGP communities or Large BGP Communities which are to be the 'trigger' to start RTBH.
             TBD: are communities 'and' or 'or'?
           </t>
@@ -185,7 +185,7 @@
         <li>The route was received from a PeerAS which is either the ASId or listed in the peerAsIDs field.</li>
         <li>The route is encompassed in the resources listed in the ipAddrBlocks.</li>
         <li>The route's prefix length matches the listed permissible prefix lengths.</li>
-	<li>The route is tagged with the designated BGP community.</li>
+        <li>The route is tagged with the designated BGP community.</li>
       </ul>
     </section>
 
