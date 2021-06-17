@@ -68,7 +68,7 @@
     <abstract>
       <t>
         This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
-        A DOA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block with a set of Border Gateway Protocol (BGP) Communities to signal a request to discard any traffic destined towards the tagged IP prefix.
+        A DOA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block tagged with a specific set of Border Gateway Protocol (BGP) Communities, to signal a request to discard IP traffic destined towards the tagged IP prefix.
       </t>
     </abstract>
 
@@ -89,14 +89,8 @@
         This document defines a Cryptographic Message Syntax (CMS) <xref target="RFC5652"/> profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <xref target="RFC6480"/>.
       </t>
       <t>
-        TODO: Purpose - to authorise origination of blackhole routes, and signal the properties that such routes should have when received at an eBGP border.
-      </t>
-      <t>
-        TODO: Document contents -
-          eContentType definition;
-          eContent definition;
-          DOA object validation;
-          BGP discard route matching.
+	DOAs can be used to validate whether incoming BGP route announcements carrying specific BGP Communities are meant to signify a request to discard IP traffic towards the IP destination carried in the BGP route.
+        This enhances the concepts of <xref target="RFC3882"/> and <xref target="RFC7999"/>.
       </t>
     </section>
 
@@ -135,25 +129,32 @@
         <section>
           <name>ipAddrBlocks</name>
           <t>
-            TODO
+             The resources contained here are the resources used to mark the authorization, and MUST match the set of resources listed by the EE certificate carried in the CMS certificates field.
+             See <xref target="RFC6482"/> Section 3.3 for a similar, but not entirely similar appraoch.
+             A notable difference is the absense of MaxLength, and instead a PrefixLengthRange is used
           </t>
         </section>
         <section>
           <name>originAsID</name>
           <t>
-            TODO
+            The asID field contains the AS number that is authorized to originate routes intended to signal a request to discard IP traffic for the given IP address prefixes.
+            The asID does have to be contained by the resources listed on the EE certificate.
           </t>
         </section>
         <section>
           <name>peerAsIDs</name>
           <t>
-            TODO
+            The peerAsIDs field contains the AS number that is authorized to originate routes intended to signal a request to discard IP traffic for the given IP address prefixes.
+            The peerAsIDs does have to be contained by the resources listed on the EE certificate.
+	    If no peerAsIDs are set, any neighboring ASNs MUST only accept the RTBH request from the listed asID.
+            The peerAsIDs field allows DOAs to be used to validate RTBH with one AS hop between originator and receipient.
           </t>
         </section>
         <section>
           <name>communities</name>
-          <t>
-            TODO
+	  <t>
+            The communities field contains the Classic BGP communities or Large BGP Communities which are to be the 'trigger' to start RTBH.
+            TBD: are communities 'and' or 'or'?
           </t>
         </section>
       </section>
@@ -172,10 +173,20 @@
     </section>
 
     <section anchor="route_matching">
-      <name>BGP Discard Route Matching</name>
+      <name>BGP Route Matching to triggert Discarding</name>
       <t>
         TODO: Seperate document?
       </t>
+      <t>
+        In order for a receipient of a potential request to trigger discarding of IP traffic, the following conditions MUST be met:
+      </t>
+      <ul>
+        <li>The route originated from the ASN listed in the ASId.</li>
+        <li>The route was received from a PeerAS which is either the ASId or listed in the peerAsIDs field.</li>
+        <li>The route is encompassed in the resources listed in the ipAddrBlocks.</li>
+        <li>The route's prefix length matches the listed permissible prefix lengths.</li>
+	<li>The route is tagged with the designated BGP community.</li>
+      </ul>
     </section>
 
     <section anchor="operational">
@@ -325,16 +336,19 @@
         <name>Normative References</name>
         <?rfc include="reference.RFC.2119.xml"?>
         <?rfc include="reference.RFC.3779.xml"?>
+        <?rfc include="reference.RFC.3882.xml"?>
         <?rfc include="reference.RFC.5652.xml"?>
         <?rfc include="reference.RFC.6481.xml"?>
         <?rfc include="reference.RFC.6488.xml"?>
         <?rfc include="reference.RFC.6838.xml"?>
+        <?rfc include="reference.RFC.7999.xml"?>
         <?rfc include="reference.RFC.8174.xml"?>
       </references>
 
       <references>
         <name>Informative References</name>
         <?rfc include="reference.RFC.6480.xml"?>
+        <?rfc include="reference.RFC.6482.xml"?>
         <reference anchor="rpkimancer-doa" target="https://pypi.org/project/rpkimancer-doa/">
           <front>
             <title>rpkimancer-doa</title>
