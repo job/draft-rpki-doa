@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>branches: main &#8212; RPKI Discard Origin Authorizations 0.0.2.dev2 documentation</title>
+    <title>branches: main &#8212; RPKI Discard Origin Authorizations 0.0.2.dev4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/readable.css" />
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="../../../toc-draft-spaghetti-sidrops-rpki-doa-branches.html" title="branches"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../../index.html">RPKI Discard Origin Authorizations 0.0.2.dev2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">RPKI Discard Origin Authorizations 0.0.2.dev4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../../toc.html" >Internet Drafts</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../../../toc-draft-spaghetti-sidrops-rpki-doa.html" ><code class="docutils literal notranslate"><span class="pre">draft-spaghetti-sidrops-rpki-doa</span></code></a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../../../toc-draft-spaghetti-sidrops-rpki-doa-branches.html" accesskey="U">branches</a> &#187;</li>
@@ -62,10 +62,10 @@
 <dd><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Network Working Group                                        J. Snijders
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                          M. Abrahamsson
-Expires: 19 December 2021                                            NTT
+Expires: 26 December 2021                                            NTT
                                                              B. Maddison
                                                               Workonline
-                                                            17 June 2021
+                                                            24 June 2021
 
 
   Resource Public Key Infrastructure (RPKI) object profile for Discard
@@ -106,7 +106,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as &quot;work in progress.&quot;
 
-   This Internet-Draft will expire on 19 December 2021.
+   This Internet-Draft will expire on 26 December 2021.
 
 Copyright Notice
 
@@ -135,7 +135,7 @@ Table of Contents
        2.3.4.  peerAsIDs
        2.3.5.  communities
    3.  DOA Validation
-   4.  BGP Route Matching to triggert Discarding
+   4.  BGP Route Matching to trigger Discarding
    5.  Operational Considerations
    6.  Security Considerations
    7.  Implementation status
@@ -266,12 +266,13 @@ Table of Contents
 
 2.3.4.  peerAsIDs
 
-   The peerAsIDs field contains the AS number that is authorized to
-   originate routes intended to signal a request to discard IP traffic
-   for the given IP address prefixes.  The peerAsIDs does have to be
-   contained by the resources listed on the EE certificate.  ASNs MUST
-   only accept the RTBH request from the listed asID.  The peerAsIDs
-   field allows DOAs to be used to validate RTBH with one AS hop between
+   The peerAsIDs field contains zero, one, or more AS numbers which are
+   authorized to propagate routes intended to signal a request to
+   discard IP traffic for the given IP address prefixes.  The peerAsIDs
+   don&#39;t have to be contained by the resources listed on the EE
+   certificate.  Network operators MUST only accept the RTBH request if
+   it was received from any listed peerAsIDs.  The peerAsIDs field
+   allows DOAs to be used to validate RTBH with one AS hop between
    originator and receipient.
 
 2.3.5.  communities
@@ -292,7 +293,7 @@ Table of Contents
       is contained within the set of IP addresses specified in the EE
       certificate&#39;s IP address delegation extension.
 
-4.  BGP Route Matching to triggert Discarding
+4.  BGP Route Matching to trigger Discarding
 
    TODO: Seperate document?
 
