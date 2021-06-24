@@ -173,7 +173,7 @@
     </section>
 
     <section anchor="route_matching">
-      <name>BGP Route Matching to triggert Discarding</name>
+      <name>BGP Route Matching to trigger Discarding</name>
       <t>
         TODO: Seperate document?
       </t>
