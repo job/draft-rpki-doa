@@ -5,10 +5,10 @@
 Network Working Group                                        J. Snijders
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                          M. Abrahamsson
-Expires: 19 December 2021                                            NTT
+Expires: 26 December 2021                                            NTT
                                                              B. Maddison
                                                               Workonline
-                                                            17 June 2021
+                                                            24 June 2021
 
 
   Resource Public Key Infrastructure (RPKI) object profile for Discard
@@ -49,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 December 2021.
+   This Internet-Draft will expire on 26 December 2021.
 
 
 
-Snijders, et al.        Expires 19 December 2021                [Page 1]
+Snijders, et al.        Expires 26 December 2021                [Page 1]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
@@ -85,7 +85,7 @@ Table of Contents
        2.3.4.  peerAsIDs . . . . . . . . . . . . . . . . . . . . . .   5
        2.3.5.  communities . . . . . . . . . . . . . . . . . . . . .   5
    3.  DOA Validation  . . . . . . . . . . . . . . . . . . . . . . .   5
-   4.  BGP Route Matching to triggert Discarding . . . . . . . . . .   5
+   4.  BGP Route Matching to trigger Discarding  . . . . . . . . . .   6
    5.  Operational Considerations  . . . . . . . . . . . . . . . . .   6
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
    7.  Implementation status . . . . . . . . . . . . . . . . . . . .   6
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Snijders, et al.        Expires 19 December 2021                [Page 2]
+Snijders, et al.        Expires 26 December 2021                [Page 2]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
@@ -165,7 +165,7 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 19 December 2021                [Page 3]
+Snijders, et al.        Expires 26 December 2021                [Page 3]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
@@ -221,7 +221,7 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 19 December 2021                [Page 4]
+Snijders, et al.        Expires 26 December 2021                [Page 4]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
@@ -244,12 +244,13 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 2.3.4.  peerAsIDs
 
-   The peerAsIDs field contains the AS number that is authorized to
-   originate routes intended to signal a request to discard IP traffic
-   for the given IP address prefixes.  The peerAsIDs does have to be
-   contained by the resources listed on the EE certificate.  ASNs MUST
-   only accept the RTBH request from the listed asID.  The peerAsIDs
-   field allows DOAs to be used to validate RTBH with one AS hop between
+   The peerAsIDs field contains zero, one, or more AS numbers which are
+   authorized to propagate routes intended to signal a request to
+   discard IP traffic for the given IP address prefixes.  The peerAsIDs
+   don't have to be contained by the resources listed on the EE
+   certificate.  Network operators MUST only accept the RTBH request if
+   it was received from any listed peerAsIDs.  The peerAsIDs field
+   allows DOAs to be used to validate RTBH with one AS hop between
    originator and receipient.
 
 2.3.5.  communities
@@ -270,17 +271,20 @@ Internet-Draft                  RPKI DOA                       June 2021
       is contained within the set of IP addresses specified in the EE
       certificate's IP address delegation extension.
 
-4.  BGP Route Matching to triggert Discarding
-
-   TODO: Seperate document?
 
 
 
 
-Snijders, et al.        Expires 19 December 2021                [Page 5]
+
+
+Snijders, et al.        Expires 26 December 2021                [Page 5]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
+
+4.  BGP Route Matching to trigger Discarding
+
+   TODO: Seperate document?
 
    In order for a receipient of a potential request to trigger
    discarding of IP traffic, the following conditions MUST be met:
@@ -326,17 +330,17 @@ Internet-Draft                  RPKI DOA                       June 2021
    According to RFC 7942, "this will allow reviewers and working groups
    to assign due consideration to documents that have the benefit of
    running code, which may serve as evidence of valuable experimentation
-   and feedback that have made the implemented protocols more mature.
-   It is up to the individual working groups to use this information as
-   they see fit".
 
 
 
-
-Snijders, et al.        Expires 19 December 2021                [Page 6]
+Snijders, et al.        Expires 26 December 2021                [Page 6]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
+
+   and feedback that have made the implemented protocols more mature.
+   It is up to the individual working groups to use this information as
+   they see fit".
 
    *  A signer implementation [rpkimancer-doa] written in Python has
       been developed by Ben Maddison.
@@ -385,11 +389,7 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-
-
-
-
-Snijders, et al.        Expires 19 December 2021                [Page 7]
+Snijders, et al.        Expires 26 December 2021                [Page 7]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
@@ -445,7 +445,7 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 19 December 2021                [Page 8]
+Snijders, et al.        Expires 26 December 2021                [Page 8]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
@@ -501,7 +501,7 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 19 December 2021                [Page 9]
+Snijders, et al.        Expires 26 December 2021                [Page 9]
 
 Internet-Draft                  RPKI DOA                       June 2021
 
@@ -557,4 +557,4 @@ Authors' Addresses
 
 
 
-Snijders, et al.        Expires 19 December 2021               [Page 10]
+Snijders, et al.        Expires 26 December 2021               [Page 10]

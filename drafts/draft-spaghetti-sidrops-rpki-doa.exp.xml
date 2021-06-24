@@ -177,9 +177,9 @@ END
         <section>
           <name>peerAsIDs</name>
           <t>
-            The peerAsIDs field contains the AS number that is authorized to originate routes intended to signal a request to discard IP traffic for the given IP address prefixes.
-            The peerAsIDs does have to be contained by the resources listed on the EE certificate.
-            ASNs MUST only accept the RTBH request from the listed asID.
+            The peerAsIDs field contains zero, one, or more AS numbers which are authorized to propagate routes intended to signal a request to discard IP traffic for the given IP address prefixes.
+            The peerAsIDs don't have to be contained by the resources listed on the EE certificate.
+            Network operators MUST only accept the RTBH request if it was received from any listed peerAsIDs.
             The peerAsIDs field allows DOAs to be used to validate RTBH with one AS hop between originator and receipient.
           </t>
         </section>
@@ -204,7 +204,7 @@ END
       </ul>
     </section>
     <section anchor="route_matching">
-      <name>BGP Route Matching to triggert Discarding</name>
+      <name>BGP Route Matching to trigger Discarding</name>
       <t>
         TODO: Seperate document?
       </t>
