@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>branches: main &#8212; RPKI Discard Origin Authorizations 0.0.2.dev10 documentation</title>
+    <title>branches: main &#8212; RPKI Discard Origin Authorizations 0.0.2.dev11 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/readable.css" />
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="../../../toc-draft-spaghetti-sidrops-rpki-doa-branches.html" title="branches"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../../index.html">RPKI Discard Origin Authorizations 0.0.2.dev10 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">RPKI Discard Origin Authorizations 0.0.2.dev11 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../../toc.html" >Internet Drafts</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../../../toc-draft-spaghetti-sidrops-rpki-doa.html" ><code class="docutils literal notranslate"><span class="pre">draft-spaghetti-sidrops-rpki-doa</span></code></a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../../../toc-draft-spaghetti-sidrops-rpki-doa-branches.html" accesskey="U">branches</a> &#187;</li>
@@ -135,21 +135,24 @@ Table of Contents
        2.3.4.  peerAsIDs
        2.3.5.  communities
    3.  DOA Validation
-   4.  BGP Route Matching to trigger Discarding
-   5.  Operational Considerations
-   6.  Security Considerations
-   7.  Implementation status
-   8.  IANA Considerations
-     8.1.  SMI Security for S/MIME CMS Module Identifier
-           (1.2.840.113549.1.9.16.0)
-     8.2.  SMI Security for S/MIME CMS Content Type
-           (1.2.840.113549.1.9.16.1)
-     8.3.  RPKI Signed Objects registry
-     8.4.  RPKI Repository Name Schemes registry
-     8.5.  Media Types registry
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   4.  RPKI-RTR protocol extensions
+   5.  BGP Route Matching
+   6.  Route Origin Validation Co-Existance
+   7.  Exporting RTBH Routes
+   8.  Operational Considerations
+   9.  Security Considerations
+   10. Implementation status
+   11. IANA Considerations
+     11.1.  SMI Security for S/MIME CMS Module Identifier
+            (1.2.840.113549.1.9.16.0)
+     11.2.  SMI Security for S/MIME CMS Content Type
+            (1.2.840.113549.1.9.16.1)
+     11.3.  RPKI Signed Objects registry
+     11.4.  RPKI Repository Name Schemes registry
+     11.5.  Media Types registry
+   12. References
+     12.1.  Normative References
+     12.2.  Informative References
    Appendix A.  Acknowledgements
    Appendix B.  Document Changelog
      B.1.  Individual Submission Phase
@@ -157,14 +160,40 @@ Table of Contents
 
 1.  Introduction
 
+   Internet operators commonly provide a means for adjacent networks to
+   advertise routes in BGP with the intention that traffic matching such
+   a route be discarded, rather than being forwarded towards the
+   advertising network.  This is referred to as Remotely Triggered
+   Blackholing (RTBH), and is typically acheived through the use of a
+   BGP Community [RFC1997].  [RFC7999] defines a &quot;well known&quot; community
+   value for this purpose.  The route used to signal an RTBH request is
+   referred to as an RTBH route.
+
+   Inter-AS RTBH signalling, however, is in tension with the deployment
+   of Route Origin Validation (ROV) based on the Resource Public Key
+   Infrastructure (RPKI) [RFC6811].  Because a blackhole route is likely
+   to have a prefix length greater than permitted in any covering ROA,
+   an operator wishing to deploy routing policy to discard BGP paths
+   with an ROV status of &quot;Invalid&quot;, and simultaneously maintain a
+   blackhole signalling service must choose either:
+
+   1.  to exempt blackhole routes from processing based on ROV status,
+       thus foregoing the benefit of ROV altogether; or
+
+   2.  to insist that users of the blackhole signalling service create
+       ROAs with a sufficiently large &quot;maxLength&quot; values to accomodate
+       blackhole routes.
+
    This document defines a Cryptographic Message Syntax (CMS) [RFC5652]
    profile for Discard Origin Authorizations (DOAs), for use with the
-   Resource Public Key Infrastructure (RPKI) [RFC6480].
+   Resource Public Key Infrastructure (RPKI) [RFC6480], along with
+   associated processing rules.
 
    DOAs can be used to validate whether incoming BGP route announcements
    carrying specific BGP Communities are meant to signify a request to
    discard IP traffic towards the IP destination carried in the BGP
-   route.  This enhances the concepts of [RFC3882] and [RFC7999].
+   route.  This enhances the concepts of [RFC3882] and [RFC7999], and
+   can co-exist with deployed ROV policy.
 
 2.  DOA EncapsulatedContentInfo
 
@@ -250,30 +279,32 @@ Table of Contents
 
 2.3.2.  ipAddrBlocks
 
-   The resources contained here are the resources used to mark the
-   authorization, and MUST match the set of resources listed by the EE
-   certificate carried in the CMS certificates field.  See [RFC6482]
-   Section 3.3 for a similar, but not entirely similar appraoch.  A
-   notable difference is the absense of MaxLength, and instead a
-   PrefixLengthRange is used
+   The IP address prefixes for which the announcement of RTBH routes is
+   authorized.  The IP address resources contained here are the
+   resources used to mark the authorization, and MUST match the set of
+   resources listed by the EE certificate carried in the CMS
+   certificates field.  See [RFC6482] Section 3.3 for a similar, but not
+   entirely similar appraoch.  A notable difference is the absense of
+   MaxLength, and instead a PrefixLengthRange is used.  If no
+   PrefixLengthRange is present, only the &quot;host route&quot; prefix length
+   (i.e. 32 for IPv4 and 128 for IPv6) is authorized.
 
 2.3.3.  originAsID
 
    The asID field contains the AS number that is authorized to originate
-   routes intended to signal a request to discard IP traffic for the
-   given IP address prefixes.  The asID does have to be contained by the
-   resources listed on the EE certificate.
+   RTBH routes for the given IP address prefixes.  The asID does not
+   have to be contained by the resources listed on the EE certificate.
 
 2.3.4.  peerAsIDs
 
-   The peerAsIDs field contains zero, one, or more AS numbers which are
-   authorized to propagate routes intended to signal a request to
-   discard IP traffic for the given IP address prefixes.  The peerAsIDs
-   don&#39;t have to be contained by the resources listed on the EE
-   certificate.  Network operators MUST only accept the RTBH request if
-   it was received from any listed peerAsIDs.  The peerAsIDs field
-   allows DOAs to be used to validate RTBH with one AS hop between
-   originator and receipient.
+   The peerAsIDs field contains zero or more AS numbers that are
+   authorized to propagate routes intended to signal an RTBH request for
+   the given IP address prefixes.  The peerAsIDs do not have to be
+   contained by the resources listed on the EE certificate.  Network
+   operators MUST only accept the RTBH request if it was received from
+   any listed peerAsIDs.  The peerAsIDs field allows DOAs to be used to
+   validate RTBH routes with one AS hop between originator and
+   receipient.
 
 2.3.5.  communities
 
@@ -293,35 +324,95 @@ Table of Contents
       is contained within the set of IP addresses specified in the EE
       certificate&#39;s IP address delegation extension.
 
-4.  BGP Route Matching to trigger Discarding
+4.  RPKI-RTR protocol extensions
 
    TODO: Seperate document?
 
-   In order for a receipient of a potential request to trigger
-   discarding of IP traffic, the following conditions MUST be met:
+5.  BGP Route Matching
+
+   TODO: Seperate document?
+
+   A BGP speaker MAY assign to each path it receives from its peers one
+   of 3 RTBH request validation states:
+
+   *  Matched: a validated DOA object was found covering the prefix of
+      the received path, and matching the contraints of the DOA;
+
+   *  Unmatched: a validated DOA object was found covering the prefix of
+      the received path, but the constraints of the DOA were not
+      matched; or
+
+   *  NotFound: a validated DOA object covering the prefix of the
+      receieved path was not found.
+
+   Where &quot;covering&quot; is used as in its definition in Section 2 [RFC6811].
+
+   In order for a BGP path to be considered to have matched the
+   constraints of a DOA object, the following conditions MUST be met:
 
    *  The route originated from the ASN listed in the ASId.
 
    *  The route was received from a PeerAS which is either the ASId or
       listed in the peerAsIDs field.
 
-   *  The route is encompassed in the resources listed in the
-      ipAddrBlocks.
-
    *  The route&#39;s prefix length matches the listed permissible prefix
       lengths.
 
-   *  The route is tagged with the designated BGP community.
+   *  The route is tagged with (TODO: one or more of?) the designated
+      BGP community.
 
-5.  Operational Considerations
+6.  Route Origin Validation Co-Existance
+
+   It is important to observe that ROAs and DOAs can and will be issued
+   for the same covered address space, and that the resulting ROV
+   validation state MUST be entirely independent of the resulting DOA
+   validation state.
+
+   In particular it is expected that legitimate RTBH routes will
+   commonly receive a DOA validation state of &#39;Matched&#39; whilst also
+   receiving a ROV validation state of &#39;Invalid&#39; due to the (likely)
+   longer prefix-length of an RTBH route.
+
+   For this reason, it is recommended that operators construct policy so
+   as to act on the DOA validation early in the routing policy
+   application process, such that routes that are &#39;Matched&#39; may be
+   installed as RTBH routes, and routes that are &#39;Unmatched&#39; or
+   &#39;NotFound&#39; can &quot;fall-through&quot; to be processed as &quot;normal&quot; routes,
+   including the possible application of policy based on their ROV
+   validation state.
+
+   Critically, in order that operators are able to construct policy
+   according to their needs conforming implementations MUST NOT take any
+   policy action on a route based on either its DOA or ROV validation
+   state by default.  See also [RFC8481].
+
+7.  Exporting RTBH Routes
+
+   The guidance of Section 3.2 [RFC7999] that, in general, RTBH routes
+   SHOULD NOT be propagated beyond the receiving AS continues to apply
+   to RTBH routes validated in terms of the above mechanisms.
+
+   The exception to this guidance is that an operator MAY propagate a
+   received RTBH route to neighboring ASes if its own AS number appears
+   in the peerAsIDs field of the matched DOA, since this indicates a
+   desire by the issuer that neighbors of the local AS honour the route
+   as a legitimate RTBH signal.
+
+   To facilitate the construction of routing policies by operators that
+   implemented this behaviour, conforming BGP speaker implementations
+   SHOULD provide a means of distinguishing between &#39;Matched&#39; routes for
+   which the local AS appears in the peerAsIDs of the matched DOA from
+   those for which it does not.
+
+8.  Operational Considerations
 
    TODO
 
-6.  Security Considerations
+9.  Security Considerations
 
    TODO
 
-7.  Implementation status
+10.  Implementation status
 
    This section is to be removed before publishing as an RFC.
 
@@ -348,10 +439,10 @@ Table of Contents
    *  A signer implementation [rpkimancer-doa] written in Python has
       been developed by Ben Maddison.
 
-8.  IANA Considerations
+11.  IANA Considerations
 
-8.1.  SMI Security for S/MIME CMS Module Identifier
-      (1.2.840.113549.1.9.16.0)
+11.1.  SMI Security for S/MIME CMS Module Identifier
+       (1.2.840.113549.1.9.16.0)
 
    The IANA is requested to register the following entry for this
    document in the &quot;SMI Security for S/MIME CMS Module Identifier
@@ -365,7 +456,8 @@ Table of Contents
    Upon publication of this document, IANA is requested to reference the
    RFC publication instead of this draft.
 
-8.2.  SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)
+11.2.  SMI Security for S/MIME CMS Content Type
+       (1.2.840.113549.1.9.16.1)
 
    The IANA is requested to register the following entry for this
    document in the &quot;SMI Security for S/MIME CMS Content Type
@@ -379,7 +471,7 @@ Table of Contents
    Upon publication of this document, IANA is requested to reference the
    RFC publication instead of this draft.
 
-8.3.  RPKI Signed Objects registry
+11.3.  RPKI Signed Objects registry
 
    The IANA is requested to register the OID for the RPKI Discard Origin
    Authorization in the &quot;RPKI Signed Objects&quot; registry ([RFC6488]) as
@@ -390,7 +482,7 @@ Table of Contents
       DOA           1.2.840.113549.1.9.16.1.TBD  [RFC-TBD]
 
 
-8.4.  RPKI Repository Name Schemes registry
+11.4.  RPKI Repository Name Schemes registry
 
    The IANA is requested to register the RPKI Discard Origin
    Authorization file extension in the &quot;RPKI Repository Name Schemes&quot;
@@ -401,7 +493,7 @@ Table of Contents
       .doa                Discard Origin Authorization   [RFC-TBD]
 
 
-8.5.  Media Types registry
+11.5.  Media Types registry
 
    The IANA is requested to register the media type application/rpki-doa
    in the &quot;Media Types&quot; registry ([RFC6838]) as follows:
@@ -431,9 +523,9 @@ Table of Contents
    Change controller: Job Snijders &lt;job@fastly.com&gt;
 
 
-9.  References
+12.  References
 
-9.1.  Normative References
+12.1.  Normative References
 
    [RFC2119]  Bradner, S., &quot;Key words for use in RFCs to Indicate
               Requirement Levels&quot;, BCP 14, RFC 2119,
@@ -477,7 +569,11 @@ Table of Contents
               2119 Key Words&quot;, BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, &lt;https://www.rfc-editor.org/info/rfc8174&gt;.
 
-9.2.  Informative References
+12.2.  Informative References
+
+   [RFC1997]  Chandra, R., Traina, P., and T. Li, &quot;BGP Communities
+              Attribute&quot;, RFC 1997, DOI 10.17487/RFC1997, August 1996,
+              &lt;https://www.rfc-editor.org/info/rfc1997&gt;.
 
    [RFC6480]  Lepinski, M. and S. Kent, &quot;An Infrastructure to Support
               Secure Internet Routing&quot;, RFC 6480, DOI 10.17487/RFC6480,
@@ -487,6 +583,16 @@ Table of Contents
               Origin Authorizations (ROAs)&quot;, RFC 6482,
               DOI 10.17487/RFC6482, February 2012,
               &lt;https://www.rfc-editor.org/info/rfc6482&gt;.
+
+   [RFC6811]  Mohapatra, P., Scudder, J., Ward, D., Bush, R., and R.
+              Austein, &quot;BGP Prefix Origin Validation&quot;, RFC 6811,
+              DOI 10.17487/RFC6811, January 2013,
+              &lt;https://www.rfc-editor.org/info/rfc6811&gt;.
+
+   [RFC8481]  Bush, R., &quot;Clarifications to BGP Origin Validation Based
+              on Resource Public Key Infrastructure (RPKI)&quot;, RFC 8481,
+              DOI 10.17487/RFC8481, September 2018,
+              &lt;https://www.rfc-editor.org/info/rfc8481&gt;.
 
    [rpkimancer-doa]
               Maddison, B., &quot;rpkimancer-doa&quot;, June 2021,
