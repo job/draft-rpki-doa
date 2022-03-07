@@ -3,5 +3,5 @@
 :::{xml2rfc:version} draft-spaghetti-sidrops-rpki-doa
 :ref_type: branches
 :ref_name: main
-:ref_path: refs/remotes/origin/main
+:ref_path: refs/heads/main
 :::
