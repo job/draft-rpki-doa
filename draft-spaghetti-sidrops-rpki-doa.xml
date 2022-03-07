@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<!DOCTYPE rfc SYSTEM "rfc2629-xhtml.ent">
-
 <?rfc sortrefs="yes"?>
 <?rfc subcompact="no"?>
 <?rfc symrefs="yes"?>
@@ -11,6 +9,7 @@
 <?rfc subcompact="no"?>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
+     submissionType="IETF"
      category="std"
      docName="draft-spaghetti-sidrops-rpki-doa-00"
      ipr="trust200902"
@@ -86,11 +85,29 @@
     <section anchor="intro">
       <name>Introduction</name>
       <t>
-        This document defines a Cryptographic Message Syntax (CMS) <xref target="RFC5652"/> profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <xref target="RFC6480"/>.
+        Internet operators commonly provide a means for adjacent networks to advertise routes in BGP with the intention that traffic matching such a route be discarded, rather than being forwarded towards the advertising network.
+        This is referred to as Remotely Triggered Blackholing (RTBH), and is typically acheived through the use of a BGP Community <xref target="RFC1997"/>.
+        <xref target="RFC7999"/> defines a "well known" community value for this purpose.
+        The route used to signal an RTBH request is referred to as an RTBH route.
+      </t>
+      <t>
+        Inter-AS RTBH signalling, however, is in tension with the deployment of Route Origin Validation (ROV) based on the Resource Public Key Infrastructure (RPKI) <xref target="RFC6811"/>.
+        Because a blackhole route is likely to have a prefix length greater than permitted in any covering ROA, an operator wishing to deploy routing policy to discard BGP paths with an ROV status of "Invalid", and simultaneously maintain a blackhole signalling service must choose either:
+      </t>
+      <ol>
+        <li>
+            to exempt blackhole routes from processing based on ROV status, thus foregoing the benefit of ROV altogether; or
+        </li>
+        <li>
+            to insist that users of the blackhole signalling service create ROAs with a sufficiently large "maxLength" values to accomodate blackhole routes.
+        </li>
+      </ol>
+      <t>
+        This document defines a Cryptographic Message Syntax (CMS) <xref target="RFC5652"/> profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI) <xref target="RFC6480"/>, along with associated processing rules.
       </t>
       <t>
         DOAs can be used to validate whether incoming BGP route announcements carrying specific BGP Communities are meant to signify a request to discard IP traffic towards the IP destination carried in the BGP route.
-        This enhances the concepts of <xref target="RFC3882"/> and <xref target="RFC7999"/>.
+        This enhances the concepts of <xref target="RFC3882"/> and <xref target="RFC7999"/>, and can co-exist with deployed ROV policy.
       </t>
     </section>
 
@@ -129,25 +146,27 @@
         <section>
           <name>ipAddrBlocks</name>
           <t>
-             The resources contained here are the resources used to mark the authorization, and MUST match the set of resources listed by the EE certificate carried in the CMS certificates field.
-             See <xref target="RFC6482"/> Section 3.3 for a similar, but not entirely similar appraoch.
-             A notable difference is the absense of MaxLength, and instead a PrefixLengthRange is used
+            The IP address prefixes for which the announcement of RTBH routes is authorized.
+            The IP address resources contained here are the resources used to mark the authorization, and MUST match the set of resources listed by the EE certificate carried in the CMS certificates field.
+            See <xref target="RFC6482"/> Section 3.3 for a similar, but not entirely similar appraoch.
+            A notable difference is the absense of MaxLength, and instead a PrefixLengthRange is used.
+            If no PrefixLengthRange is present, only the "host route" prefix length (i.e. 32 for IPv4 and 128 for IPv6) is authorized.
           </t>
         </section>
         <section>
           <name>originAsID</name>
           <t>
-            The asID field contains the AS number that is authorized to originate routes intended to signal a request to discard IP traffic for the given IP address prefixes.
-            The asID does have to be contained by the resources listed on the EE certificate.
+            The asID field contains the AS number that is authorized to originate RTBH routes for the given IP address prefixes.
+            The asID does not have to be contained by the resources listed on the EE certificate.
           </t>
         </section>
         <section>
           <name>peerAsIDs</name>
           <t>
-            The peerAsIDs field contains zero, one, or more AS numbers which are authorized to propagate routes intended to signal a request to discard IP traffic for the given IP address prefixes.
-            The peerAsIDs don't have to be contained by the resources listed on the EE certificate.
+            The peerAsIDs field contains zero or more AS numbers that are authorized to propagate routes intended to signal an RTBH request for the given IP address prefixes.
+            The peerAsIDs do not have to be contained by the resources listed on the EE certificate.
             Network operators MUST only accept the RTBH request if it was received from any listed peerAsIDs.
-            The peerAsIDs field allows DOAs to be used to validate RTBH with one AS hop between originator and receipient.
+            The peerAsIDs field allows DOAs to be used to validate RTBH routes with one AS hop between originator and receipient.
           </t>
         </section>
         <section>
@@ -172,21 +191,72 @@
       </ul>
     </section>
 
+    <section anchor="rtr_extension">
+      <name>RPKI-RTR protocol extensions</name>
+      <t>TODO: Seperate document?</t>
+    </section>
+
     <section anchor="route_matching">
-      <name>BGP Route Matching to trigger Discarding</name>
+      <name>BGP Route Matching</name>
       <t>
         TODO: Seperate document?
       </t>
       <t>
-        In order for a receipient of a potential request to trigger discarding of IP traffic, the following conditions MUST be met:
+          A BGP speaker MAY assign to each path it receives from its peers one of 3 RTBH request validation states:
+      </t>
+      <ul>
+        <li>
+          Matched: a validated DOA object was found covering the prefix of the received path, and matching the contraints of the DOA;
+        </li>
+        <li>
+          Unmatched: a validated DOA object was found covering the prefix of the received path, but the constraints of the DOA were not matched; or
+        </li>
+        <li>
+          NotFound: a validated DOA object covering the prefix of the receieved path was not found.
+        </li>
+      </ul>
+      <t>
+        Where "covering" is used as in its definition in <xref target="RFC6811">Section 2</xref>.
+      </t>
+      <t>
+        In order for a BGP path to be considered to have matched the constraints of a DOA object, the following conditions MUST be met:
       </t>
       <ul>
         <li>The route originated from the ASN listed in the ASId.</li>
         <li>The route was received from a PeerAS which is either the ASId or listed in the peerAsIDs field.</li>
-        <li>The route is encompassed in the resources listed in the ipAddrBlocks.</li>
         <li>The route's prefix length matches the listed permissible prefix lengths.</li>
-        <li>The route is tagged with the designated BGP community.</li>
+        <li>The route is tagged with (TODO: one or more of?) the designated BGP community.</li>
       </ul>
+    </section>
+
+    <section anchor="rov_coexist">
+      <name>Route Origin Validation Co-Existance</name>
+      <t>
+        It is important to observe that ROAs and DOAs can and will be issued for the same covered address space, and that the resulting ROV validation state MUST be entirely independent of the resulting DOA validation state.
+      </t>
+      <t>
+        In particular it is expected that legitimate RTBH routes will commonly receive a DOA validation state of 'Matched' whilst also receiving a ROV validation state of 'Invalid' due to the (likely) longer prefix-length of an RTBH route.
+      </t>
+      <t>
+        For this reason, it is recommended that operators construct policy so as to act on the DOA validation early in the routing policy application process, such that routes that are 'Matched' may be installed as RTBH routes, and routes that are 'Unmatched' or 'NotFound' can "fall-through" to be processed as "normal" routes, including the possible application of policy based on their ROV validation state.
+      </t>
+      <t>
+        Critically, in order that operators are able to construct policy according to their needs conforming implementations MUST NOT take any policy action on a route based on either its DOA or ROV validation state by default.
+        See also <xref target="RFC8481"/>.
+      </t>
+    </section>
+
+    <section>
+      <name>Exporting RTBH Routes</name>
+      <t>
+        The guidance of <xref target="RFC7999">Section 3.2</xref> that, in general, RTBH routes SHOULD NOT be propagated beyond the receiving AS continues to apply to RTBH routes validated in terms of the above mechanisms.
+      </t>
+      <t>
+        The exception to this guidance is that an operator MAY propagate a received RTBH route to neighboring ASes if its own AS number appears in the peerAsIDs field of the matched DOA, since this indicates a desire by the issuer that neighbors of the local AS honour the route as a legitimate RTBH signal.
+      </t>
+      <t>
+        To facilitate the construction of routing policies by operators that implemented this behaviour, conforming BGP speaker implementations SHOULD provide a means of distinguishing between 'Matched' routes for which the local AS appears in the peerAsIDs of the matched DOA from those for which it does not.
+      </t>
     </section>
 
     <section anchor="operational">
@@ -347,8 +417,11 @@
 
       <references>
         <name>Informative References</name>
+        <?rfc include="reference.RFC.1997.xml"?>
         <?rfc include="reference.RFC.6480.xml"?>
         <?rfc include="reference.RFC.6482.xml"?>
+        <?rfc include="reference.RFC.6811.xml"?>
+        <?rfc include="reference.RFC.8481.xml"?>
         <reference anchor="rpkimancer-doa" target="https://pypi.org/project/rpkimancer-doa/">
           <front>
             <title>rpkimancer-doa</title>
