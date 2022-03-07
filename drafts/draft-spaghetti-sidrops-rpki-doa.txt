@@ -5,10 +5,10 @@
 Network Working Group                                        J. Snijders
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                          M. Abrahamsson
-Expires: 26 December 2021                                            NTT
+Expires: 8 September 2022                                            NTT
                                                              B. Maddison
                                                               Workonline
-                                                            24 June 2021
+                                                            7 March 2022
 
 
   Resource Public Key Infrastructure (RPKI) object profile for Discard
@@ -49,18 +49,18 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 December 2021.
+   This Internet-Draft will expire on 8 September 2022.
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 1]
+Snijders, et al.        Expires 8 September 2022                [Page 1]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
 Copyright Notice
 
-   Copyright (c) 2021 IETF Trust and the persons identified as the
+   Copyright (c) 2022 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -68,9 +68,9 @@ Copyright Notice
    license-info) in effect on the date of publication of this document.
    Please review these documents carefully, as they describe your rights
    and restrictions with respect to this document.  Code Components
-   extracted from this document must include Simplified BSD License text
-   as described in Section 4.e of the Trust Legal Provisions and are
-   provided without warranty as described in the Simplified BSD License.
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
 
 Table of Contents
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 2]
+Snijders, et al.        Expires 8 September 2022                [Page 2]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 3]
+Snijders, et al.        Expires 8 September 2022                [Page 3]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
       version             [0] INTEGER DEFAULT 0,
@@ -221,9 +221,9 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 4]
+Snijders, et al.        Expires 8 September 2022                [Page 4]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
 2.3.2.  ipAddrBlocks
@@ -277,9 +277,9 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 5]
+Snijders, et al.        Expires 8 September 2022                [Page 5]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
 4.  BGP Route Matching to trigger Discarding
@@ -333,9 +333,9 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 6]
+Snijders, et al.        Expires 8 September 2022                [Page 6]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
    and feedback that have made the implemented protocols more mature.
@@ -389,9 +389,9 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 7]
+Snijders, et al.        Expires 8 September 2022                [Page 7]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
 8.4.  RPKI Repository Name Schemes registry
@@ -445,9 +445,9 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 8]
+Snijders, et al.        Expires 8 September 2022                [Page 8]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -501,9 +501,9 @@ Internet-Draft                  RPKI DOA                       June 2021
 
 
 
-Snijders, et al.        Expires 26 December 2021                [Page 9]
+Snijders, et al.        Expires 8 September 2022                [Page 9]
 
-Internet-Draft                  RPKI DOA                       June 2021
+Internet-Draft                  RPKI DOA                      March 2022
 
 
    [RFC6482]  Lepinski, M., Kent, S., and D. Kong, "A Profile for Route
@@ -532,7 +532,6 @@ Authors' Addresses
    Fastly
    Amsterdam
    Netherlands
-
    Email: job@fastly.com
 
 
@@ -540,7 +539,6 @@ Authors' Addresses
    NTT Ltd.
    Stockholm
    Sweden
-
    Email: mikael@swm.pp.se
 
 
@@ -548,7 +546,6 @@ Authors' Addresses
    Workonline Communications
    Cape Town
    South Africa
-
    Email: benm@workonline.africa
 
 
@@ -557,4 +554,7 @@ Authors' Addresses
 
 
 
-Snijders, et al.        Expires 26 December 2021               [Page 10]
+
+
+
+Snijders, et al.        Expires 8 September 2022               [Page 10]
