@@ -1,0 +1,7 @@
+# tags: 00
+
+:::{xml2rfc:version} draft-spaghetti-sidrops-rpki-doa
+:ref_type: tags
+:ref_name: 00
+:ref_path: refs/tags/00
+:::
