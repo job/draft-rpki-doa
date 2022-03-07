@@ -77,35 +77,35 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  DOA EncapsulatedContentInfo . . . . . . . . . . . . . . . . .   3
      2.1.  ASN.1 Module  . . . . . . . . . . . . . . . . . . . . . .   3
-     2.2.  The DOA eContentType  . . . . . . . . . . . . . . . . . .   4
-     2.3.  The DOA eContent  . . . . . . . . . . . . . . . . . . . .   4
-       2.3.1.  version . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.2.  The DOA eContentType  . . . . . . . . . . . . . . . . . .   5
+     2.3.  The DOA eContent  . . . . . . . . . . . . . . . . . . . .   5
+       2.3.1.  version . . . . . . . . . . . . . . . . . . . . . . .   5
        2.3.2.  ipAddrBlocks  . . . . . . . . . . . . . . . . . . . .   5
        2.3.3.  originAsID  . . . . . . . . . . . . . . . . . . . . .   5
-       2.3.4.  peerAsIDs . . . . . . . . . . . . . . . . . . . . . .   5
-       2.3.5.  communities . . . . . . . . . . . . . . . . . . . . .   5
-   3.  DOA Validation  . . . . . . . . . . . . . . . . . . . . . . .   5
-   4.  BGP Route Matching to trigger Discarding  . . . . . . . . . .   6
-   5.  Operational Considerations  . . . . . . . . . . . . . . . . .   6
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
-   7.  Implementation status . . . . . . . . . . . . . . . . . . . .   6
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
-     8.1.  SMI Security for S/MIME CMS Module Identifier
-           (1.2.840.113549.1.9.16.0) . . . . . . . . . . . . . . . .   7
-     8.2.  SMI Security for S/MIME CMS Content Type
-           (1.2.840.113549.1.9.16.1) . . . . . . . . . . . . . . . .   7
-     8.3.  RPKI Signed Objects registry  . . . . . . . . . . . . . .   7
-     8.4.  RPKI Repository Name Schemes registry . . . . . . . . . .   8
-     8.5.  Media Types registry  . . . . . . . . . . . . . . . . . .   8
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .   9
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  10
-   Appendix B.  Document Changelog . . . . . . . . . . . . . . . . .  10
-     B.1.  Individual Submission Phase . . . . . . . . . . . . . . .  10
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
-
-
+       2.3.4.  peerAsIDs . . . . . . . . . . . . . . . . . . . . . .   6
+       2.3.5.  communities . . . . . . . . . . . . . . . . . . . . .   6
+   3.  DOA Validation  . . . . . . . . . . . . . . . . . . . . . . .   6
+   4.  RPKI-RTR protocol extensions  . . . . . . . . . . . . . . . .   6
+   5.  BGP Route Matching  . . . . . . . . . . . . . . . . . . . . .   6
+   6.  Route Origin Validation Co-Existance  . . . . . . . . . . . .   7
+   7.  Exporting RTBH Routes . . . . . . . . . . . . . . . . . . . .   8
+   8.  Operational Considerations  . . . . . . . . . . . . . . . . .   8
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   10. Implementation status . . . . . . . . . . . . . . . . . . . .   8
+   11. IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+     11.1.  SMI Security for S/MIME CMS Module Identifier
+            (1.2.840.113549.1.9.16.0)  . . . . . . . . . . . . . . .   9
+     11.2.  SMI Security for S/MIME CMS Content Type
+            (1.2.840.113549.1.9.16.1)  . . . . . . . . . . . . . . .   9
+     11.3.  RPKI Signed Objects registry . . . . . . . . . . . . . .   9
+     11.4.  RPKI Repository Name Schemes registry  . . . . . . . . .  10
+     11.5.  Media Types registry . . . . . . . . . . . . . . . . . .  10
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  11
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  11
+   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  12
+   Appendix B.  Document Changelog . . . . . . . . . . . . . . . . .  12
+     B.1.  Individual Submission Phase . . . . . . . . . . . . . . .  12
 
 
 
@@ -114,16 +114,44 @@ Snijders, et al.        Expires 8 September 2022                [Page 2]
 Internet-Draft                  RPKI DOA                      March 2022
 
 
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
+
 1.  Introduction
+
+   Internet operators commonly provide a means for adjacent networks to
+   advertise routes in BGP with the intention that traffic matching such
+   a route be discarded, rather than being forwarded towards the
+   advertising network.  This is referred to as Remotely Triggered
+   Blackholing (RTBH), and is typically acheived through the use of a
+   BGP Community [RFC1997].  [RFC7999] defines a "well known" community
+   value for this purpose.  The route used to signal an RTBH request is
+   referred to as an RTBH route.
+
+   Inter-AS RTBH signalling, however, is in tension with the deployment
+   of Route Origin Validation (ROV) based on the Resource Public Key
+   Infrastructure (RPKI) [RFC6811].  Because a blackhole route is likely
+   to have a prefix length greater than permitted in any covering ROA,
+   an operator wishing to deploy routing policy to discard BGP paths
+   with an ROV status of "Invalid", and simultaneously maintain a
+   blackhole signalling service must choose either:
+
+   1.  to exempt blackhole routes from processing based on ROV status,
+       thus foregoing the benefit of ROV altogether; or
+
+   2.  to insist that users of the blackhole signalling service create
+       ROAs with a sufficiently large "maxLength" values to accomodate
+       blackhole routes.
 
    This document defines a Cryptographic Message Syntax (CMS) [RFC5652]
    profile for Discard Origin Authorizations (DOAs), for use with the
-   Resource Public Key Infrastructure (RPKI) [RFC6480].
+   Resource Public Key Infrastructure (RPKI) [RFC6480], along with
+   associated processing rules.
 
    DOAs can be used to validate whether incoming BGP route announcements
    carrying specific BGP Communities are meant to signify a request to
    discard IP traffic towards the IP destination carried in the BGP
-   route.  This enhances the concepts of [RFC3882] and [RFC7999].
+   route.  This enhances the concepts of [RFC3882] and [RFC7999], and
+   can co-exist with deployed ROV policy.
 
 2.  DOA EncapsulatedContentInfo
 
@@ -133,6 +161,14 @@ Internet-Draft                  RPKI DOA                      March 2022
 
    The following ASN.1 module specifies the encapContentInfo component
    for DOA objects:
+
+
+
+
+Snijders, et al.        Expires 8 September 2022                [Page 3]
+
+Internet-Draft                  RPKI DOA                      March 2022
+
 
    RpkiDiscardOriginAuthorization-2021
     { iso(1) member-body(2) us(840) rsadsi(113549)
@@ -162,14 +198,6 @@ Internet-Draft                  RPKI DOA                      March 2022
         pkcs-9(9) id-smime(16) id-ct(1) TBD }
 
    DiscardOriginAuthorization ::= SEQUENCE {
-
-
-
-Snijders, et al.        Expires 8 September 2022                [Page 3]
-
-Internet-Draft                  RPKI DOA                      March 2022
-
-
       version             [0] INTEGER DEFAULT 0,
       ipAddrBlocks        IPListRange,
       originAsID          ASId,
@@ -189,6 +217,14 @@ Internet-Draft                  RPKI DOA                      March 2022
       minLength            INTEGER,
       maxLength            INTEGER
    }
+
+
+
+
+Snijders, et al.        Expires 8 September 2022                [Page 4]
+
+Internet-Draft                  RPKI DOA                      March 2022
+
 
    Community ::= CHOICE {
       bgpCommunity        [0] OCTET STRING (SIZE(4)),
@@ -215,43 +251,47 @@ Internet-Draft                  RPKI DOA                      March 2022
 
    The version number of the DiscardOriginAuthorization MUST be 0.
 
-
-
-
-
-
-
-Snijders, et al.        Expires 8 September 2022                [Page 4]
-
-Internet-Draft                  RPKI DOA                      March 2022
-
-
 2.3.2.  ipAddrBlocks
 
-   The resources contained here are the resources used to mark the
-   authorization, and MUST match the set of resources listed by the EE
-   certificate carried in the CMS certificates field.  See [RFC6482]
-   Section 3.3 for a similar, but not entirely similar appraoch.  A
-   notable difference is the absense of MaxLength, and instead a
-   PrefixLengthRange is used
+   The IP address prefixes for which the announcement of RTBH routes is
+   authorized.  The IP address resources contained here are the
+   resources used to mark the authorization, and MUST match the set of
+   resources listed by the EE certificate carried in the CMS
+   certificates field.  See [RFC6482] Section 3.3 for a similar, but not
+   entirely similar appraoch.  A notable difference is the absense of
+   MaxLength, and instead a PrefixLengthRange is used.  If no
+   PrefixLengthRange is present, only the "host route" prefix length
+   (i.e. 32 for IPv4 and 128 for IPv6) is authorized.
 
 2.3.3.  originAsID
 
    The asID field contains the AS number that is authorized to originate
-   routes intended to signal a request to discard IP traffic for the
-   given IP address prefixes.  The asID does have to be contained by the
-   resources listed on the EE certificate.
+   RTBH routes for the given IP address prefixes.  The asID does not
+   have to be contained by the resources listed on the EE certificate.
+
+
+
+
+
+
+
+
+
+Snijders, et al.        Expires 8 September 2022                [Page 5]
+
+Internet-Draft                  RPKI DOA                      March 2022
+
 
 2.3.4.  peerAsIDs
 
-   The peerAsIDs field contains zero, one, or more AS numbers which are
-   authorized to propagate routes intended to signal a request to
-   discard IP traffic for the given IP address prefixes.  The peerAsIDs
-   don't have to be contained by the resources listed on the EE
-   certificate.  Network operators MUST only accept the RTBH request if
-   it was received from any listed peerAsIDs.  The peerAsIDs field
-   allows DOAs to be used to validate RTBH with one AS hop between
-   originator and receipient.
+   The peerAsIDs field contains zero or more AS numbers that are
+   authorized to propagate routes intended to signal an RTBH request for
+   the given IP address prefixes.  The peerAsIDs do not have to be
+   contained by the resources listed on the EE certificate.  Network
+   operators MUST only accept the RTBH request if it was received from
+   any listed peerAsIDs.  The peerAsIDs field allows DOAs to be used to
+   validate RTBH routes with one AS hop between originator and
+   receipient.
 
 2.3.5.  communities
 
@@ -271,46 +311,116 @@ Internet-Draft                  RPKI DOA                      March 2022
       is contained within the set of IP addresses specified in the EE
       certificate's IP address delegation extension.
 
+4.  RPKI-RTR protocol extensions
+
+   TODO: Seperate document?
+
+5.  BGP Route Matching
+
+   TODO: Seperate document?
+
+   A BGP speaker MAY assign to each path it receives from its peers one
+   of 3 RTBH request validation states:
+
+   *  Matched: a validated DOA object was found covering the prefix of
+      the received path, and matching the contraints of the DOA;
+
+   *  Unmatched: a validated DOA object was found covering the prefix of
+      the received path, but the constraints of the DOA were not
+      matched; or
 
 
 
 
 
-
-Snijders, et al.        Expires 8 September 2022                [Page 5]
+Snijders, et al.        Expires 8 September 2022                [Page 6]
 
 Internet-Draft                  RPKI DOA                      March 2022
 
 
-4.  BGP Route Matching to trigger Discarding
+   *  NotFound: a validated DOA object covering the prefix of the
+      receieved path was not found.
 
-   TODO: Seperate document?
+   Where "covering" is used as in its definition in Section 2 [RFC6811].
 
-   In order for a receipient of a potential request to trigger
-   discarding of IP traffic, the following conditions MUST be met:
+   In order for a BGP path to be considered to have matched the
+   constraints of a DOA object, the following conditions MUST be met:
 
    *  The route originated from the ASN listed in the ASId.
 
    *  The route was received from a PeerAS which is either the ASId or
       listed in the peerAsIDs field.
 
-   *  The route is encompassed in the resources listed in the
-      ipAddrBlocks.
-
    *  The route's prefix length matches the listed permissible prefix
       lengths.
 
-   *  The route is tagged with the designated BGP community.
+   *  The route is tagged with (TODO: one or more of?) the designated
+      BGP community.
 
-5.  Operational Considerations
+6.  Route Origin Validation Co-Existance
+
+   It is important to observe that ROAs and DOAs can and will be issued
+   for the same covered address space, and that the resulting ROV
+   validation state MUST be entirely independent of the resulting DOA
+   validation state.
+
+   In particular it is expected that legitimate RTBH routes will
+   commonly receive a DOA validation state of 'Matched' whilst also
+   receiving a ROV validation state of 'Invalid' due to the (likely)
+   longer prefix-length of an RTBH route.
+
+   For this reason, it is recommended that operators construct policy so
+   as to act on the DOA validation early in the routing policy
+   application process, such that routes that are 'Matched' may be
+   installed as RTBH routes, and routes that are 'Unmatched' or
+   'NotFound' can "fall-through" to be processed as "normal" routes,
+   including the possible application of policy based on their ROV
+   validation state.
+
+   Critically, in order that operators are able to construct policy
+   according to their needs conforming implementations MUST NOT take any
+   policy action on a route based on either its DOA or ROV validation
+   state by default.  See also [RFC8481].
+
+
+
+
+
+
+
+
+Snijders, et al.        Expires 8 September 2022                [Page 7]
+
+Internet-Draft                  RPKI DOA                      March 2022
+
+
+7.  Exporting RTBH Routes
+
+   The guidance of Section 3.2 [RFC7999] that, in general, RTBH routes
+   SHOULD NOT be propagated beyond the receiving AS continues to apply
+   to RTBH routes validated in terms of the above mechanisms.
+
+   The exception to this guidance is that an operator MAY propagate a
+   received RTBH route to neighboring ASes if its own AS number appears
+   in the peerAsIDs field of the matched DOA, since this indicates a
+   desire by the issuer that neighbors of the local AS honour the route
+   as a legitimate RTBH signal.
+
+   To facilitate the construction of routing policies by operators that
+   implemented this behaviour, conforming BGP speaker implementations
+   SHOULD provide a means of distinguishing between 'Matched' routes for
+   which the local AS appears in the peerAsIDs of the matched DOA from
+   those for which it does not.
+
+8.  Operational Considerations
 
    TODO
 
-6.  Security Considerations
+9.  Security Considerations
 
    TODO
 
-7.  Implementation status
+10.  Implementation status
 
    This section is to be removed before publishing as an RFC.
 
@@ -327,17 +437,22 @@ Internet-Draft                  RPKI DOA                      March 2022
    features.  Readers are advised to note that other implementations may
    exist.
 
-   According to RFC 7942, "this will allow reviewers and working groups
-   to assign due consideration to documents that have the benefit of
-   running code, which may serve as evidence of valuable experimentation
 
 
 
-Snijders, et al.        Expires 8 September 2022                [Page 6]
+
+
+
+
+
+Snijders, et al.        Expires 8 September 2022                [Page 8]
 
 Internet-Draft                  RPKI DOA                      March 2022
 
 
+   According to RFC 7942, "this will allow reviewers and working groups
+   to assign due consideration to documents that have the benefit of
+   running code, which may serve as evidence of valuable experimentation
    and feedback that have made the implemented protocols more mature.
    It is up to the individual working groups to use this information as
    they see fit".
@@ -345,10 +460,10 @@ Internet-Draft                  RPKI DOA                      March 2022
    *  A signer implementation [rpkimancer-doa] written in Python has
       been developed by Ben Maddison.
 
-8.  IANA Considerations
+11.  IANA Considerations
 
-8.1.  SMI Security for S/MIME CMS Module Identifier
-      (1.2.840.113549.1.9.16.0)
+11.1.  SMI Security for S/MIME CMS Module Identifier
+       (1.2.840.113549.1.9.16.0)
 
    The IANA is requested to register the following entry for this
    document in the "SMI Security for S/MIME CMS Module Identifier
@@ -362,7 +477,8 @@ Internet-Draft                  RPKI DOA                      March 2022
    Upon publication of this document, IANA is requested to reference the
    RFC publication instead of this draft.
 
-8.2.  SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)
+11.2.  SMI Security for S/MIME CMS Content Type
+       (1.2.840.113549.1.9.16.1)
 
    The IANA is requested to register the following entry for this
    document in the "SMI Security for S/MIME CMS Content Type
@@ -376,25 +492,26 @@ Internet-Draft                  RPKI DOA                      March 2022
    Upon publication of this document, IANA is requested to reference the
    RFC publication instead of this draft.
 
-8.3.  RPKI Signed Objects registry
+11.3.  RPKI Signed Objects registry
 
    The IANA is requested to register the OID for the RPKI Discard Origin
    Authorization in the "RPKI Signed Objects" registry ([RFC6488]) as
    follows:
+
+
+
+
+Snijders, et al.        Expires 8 September 2022                [Page 9]
+
+Internet-Draft                  RPKI DOA                      March 2022
+
 
       Name          OID                          Reference
       ----------------------------------------------------
       DOA           1.2.840.113549.1.9.16.1.TBD  [RFC-TBD]
 
 
-
-
-Snijders, et al.        Expires 8 September 2022                [Page 7]
-
-Internet-Draft                  RPKI DOA                      March 2022
-
-
-8.4.  RPKI Repository Name Schemes registry
+11.4.  RPKI Repository Name Schemes registry
 
    The IANA is requested to register the RPKI Discard Origin
    Authorization file extension in the "RPKI Repository Name Schemes"
@@ -405,7 +522,7 @@ Internet-Draft                  RPKI DOA                      March 2022
       .doa                Discard Origin Authorization   [RFC-TBD]
 
 
-8.5.  Media Types registry
+11.5.  Media Types registry
 
    The IANA is requested to register the media type application/rpki-doa
    in the "Media Types" registry ([RFC6838]) as follows:
@@ -435,20 +552,17 @@ Internet-Draft                  RPKI DOA                      March 2022
    Change controller: Job Snijders <job@fastly.com>
 
 
-9.  References
-
-9.1.  Normative References
+12.  References
 
 
 
 
-
-
-
-Snijders, et al.        Expires 8 September 2022                [Page 8]
+Snijders, et al.        Expires 8 September 2022               [Page 10]
 
 Internet-Draft                  RPKI DOA                      March 2022
 
+
+12.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -492,24 +606,40 @@ Internet-Draft                  RPKI DOA                      March 2022
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-9.2.  Informative References
+12.2.  Informative References
+
+
+
+
+
+
+Snijders, et al.        Expires 8 September 2022               [Page 11]
+
+Internet-Draft                  RPKI DOA                      March 2022
+
+
+   [RFC1997]  Chandra, R., Traina, P., and T. Li, "BGP Communities
+              Attribute", RFC 1997, DOI 10.17487/RFC1997, August 1996,
+              <https://www.rfc-editor.org/info/rfc1997>.
 
    [RFC6480]  Lepinski, M. and S. Kent, "An Infrastructure to Support
               Secure Internet Routing", RFC 6480, DOI 10.17487/RFC6480,
               February 2012, <https://www.rfc-editor.org/info/rfc6480>.
 
-
-
-
-Snijders, et al.        Expires 8 September 2022                [Page 9]
-
-Internet-Draft                  RPKI DOA                      March 2022
-
-
    [RFC6482]  Lepinski, M., Kent, S., and D. Kong, "A Profile for Route
               Origin Authorizations (ROAs)", RFC 6482,
               DOI 10.17487/RFC6482, February 2012,
               <https://www.rfc-editor.org/info/rfc6482>.
+
+   [RFC6811]  Mohapatra, P., Scudder, J., Ward, D., Bush, R., and R.
+              Austein, "BGP Prefix Origin Validation", RFC 6811,
+              DOI 10.17487/RFC6811, January 2013,
+              <https://www.rfc-editor.org/info/rfc6811>.
+
+   [RFC8481]  Bush, R., "Clarifications to BGP Origin Validation Based
+              on Resource Public Key Infrastructure (RPKI)", RFC 8481,
+              DOI 10.17487/RFC8481, September 2018,
+              <https://www.rfc-editor.org/info/rfc8481>.
 
    [rpkimancer-doa]
               Maddison, B., "rpkimancer-doa", June 2021,
@@ -535,6 +665,15 @@ Authors' Addresses
    Email: job@fastly.com
 
 
+
+
+
+
+Snijders, et al.        Expires 8 September 2022               [Page 12]
+
+Internet-Draft                  RPKI DOA                      March 2022
+
+
    Mikael Abrahamsson
    NTT Ltd.
    Stockholm
@@ -557,4 +696,33 @@ Authors' Addresses
 
 
 
-Snijders, et al.        Expires 8 September 2022               [Page 10]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Snijders, et al.        Expires 8 September 2022               [Page 13]
