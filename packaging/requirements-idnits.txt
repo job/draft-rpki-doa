@@ -1,1 +1,3 @@
 idnits==3.0.0
+
+-c constraints-idnits.txt
