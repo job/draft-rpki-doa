@@ -17,7 +17,7 @@ import logging
 from typing import Any, Dict, Iterable, Optional, Tuple
 
 from rpkimancer.asn1 import Interface
-from rpkimancer.asn1.mod import RpkiDiscardOriginAuthorization_2021 as DOA
+from rpkimancer.asn1.mod import RpkiDiscardOriginAuthorization_2021 as Doa
 from rpkimancer.resources import (AFI, IPNetwork,
                                   IpResourcesInfo, net_to_bitstring)
 from rpkimancer.sigobj.base import EncapsulatedContentType, SignedObject
@@ -33,7 +33,7 @@ IPListRangeInfo = Iterable[DoaNetworkInfo]
 class IPListRange(Interface):
     """ASN.1 IPListRange type."""
 
-    content_syntax = DOA.IPListRange
+    content_syntax = Doa.IPListRange
 
     def __init__(self, ip_addr_blocks: IPListRangeInfo):
         """Initialise IPListRange instance."""
@@ -52,7 +52,7 @@ class IPListRange(Interface):
 class DiscardOriginAuthorizationContentType(EncapsulatedContentType):
     """encapContentInfo for RPKI Discard Origin Authorizations."""
 
-    asn1_definition = DOA.ct_discardOriginAuthorization
+    asn1_definition = Doa.ct_discardOriginAuthorization
     file_ext = "doa"
     as_resources = None
 
