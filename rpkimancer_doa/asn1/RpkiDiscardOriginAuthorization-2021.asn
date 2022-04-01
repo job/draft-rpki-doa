@@ -1,0 +1,54 @@
+RpkiDiscardOriginAuthorization-2021
+ { iso(1) member-body(2) us(840) rsadsi(113549)
+   pkcs(1) pkcs9(9) smime(16) mod(0) 74 } -- next available
+
+DEFINITIONS EXPLICIT TAGS ::=
+BEGIN
+
+IMPORTS
+ CONTENT-TYPE
+ FROM CryptographicMessageSyntax-2010 -- in [RFC6268]
+   { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+     pkcs-9(9) smime(16) modules(0) id-mod-cms-2009(58) }
+
+ IPAddressOrRange, IPAddressRange, IPAddress, ASId
+ FROM IPAddrAndASCertExtn -- in [RFC3779]
+   { iso(1) identified-organization(3) dod(6) internet(1)
+     security(5) mechanisms(5) pkix(7) mod(0)
+     id-mod-ip-addr-and-as-ident(30) } ;
+
+ct-discardOriginAuthorization CONTENT-TYPE ::=
+   { TYPE DiscardOriginAuthorization IDENTIFIED BY
+     id-ct-discardOriginAuthorization }
+
+id-ct-discardOriginAuthorization OBJECT IDENTIFIER ::=
+   { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+     pkcs-9(9) id-smime(16) id-ct(1) 50 } -- next available
+
+DiscardOriginAuthorization ::= SEQUENCE {
+   version             [0] INTEGER DEFAULT 0,
+   ipAddrBlocks        IPListRange,
+   originAsID          ASId,
+   peerAsIDs           [1] SEQUENCE SIZE(1..MAX) OF ASId OPTIONAL,
+   communities         [2] SEQUENCE SIZE(1..MAX) OF Community
+}
+
+IPListRange ::= SEQUENCE (SIZE(1..MAX)) OF IPAddressFamilyRange
+
+IPAddressFamilyRange ::= SEQUENCE {
+   addressFamily        OCTET STRING (SIZE(2..3)),
+   addressOrRange       IPAddressOrRange,
+   prefixLengthRange    PrefixLengthRange OPTIONAL -- if omitted, assume hostroutes
+}
+
+PrefixLengthRange ::= SEQUENCE {
+   minLength            INTEGER,
+   maxLength            INTEGER
+}
+
+Community ::= CHOICE {
+   bgpCommunity        [0] OCTET STRING (SIZE(4)),
+   bgpLargeCommunity   [1] OCTET STRING (SIZE(12))
+}
+
+END
