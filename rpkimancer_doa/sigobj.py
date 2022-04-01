@@ -16,11 +16,11 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, Iterable, Optional, Tuple
 
-from rpkimancer.asn1 import Content
-from rpkimancer.asn1.mod import RpkiDiscardOriginAuthorization_2021
+from rpkimancer.asn1 import Interface
+from rpkimancer.asn1.mod import RpkiDiscardOriginAuthorization_2021 as DOA
 from rpkimancer.resources import (AFI, IPNetwork,
                                   IpResourcesInfo, net_to_bitstring)
-from rpkimancer.sigobj.base import EncapsulatedContent, SignedObject
+from rpkimancer.sigobj.base import EncapsulatedContentType, SignedObject
 
 from .communities import BgpCommunity
 
@@ -30,10 +30,10 @@ DoaNetworkInfo = Tuple[IPNetwork, Optional[Tuple[int, int]]]
 IPListRangeInfo = Iterable[DoaNetworkInfo]
 
 
-class IPListRange(Content):
+class IPListRange(Interface):
     """ASN.1 IPListRange type."""
 
-    content_syntax = RpkiDiscardOriginAuthorization_2021.IPListRange
+    content_syntax = DOA.IPListRange
 
     def __init__(self, ip_addr_blocks: IPListRangeInfo):
         """Initialise IPListRange instance."""
@@ -49,12 +49,10 @@ class IPListRange(Content):
         super().__init__(data)
 
 
-class DiscardOriginAuthorizationEContent(EncapsulatedContent):
+class DiscardOriginAuthorizationContentType(EncapsulatedContentType):
     """encapContentInfo for RPKI Discard Origin Authorizations."""
 
-    content_type = RpkiDiscardOriginAuthorization_2021.id_ct_discardOriginAuthorization  # noqa: E501
-    content_syntax = RpkiDiscardOriginAuthorization_2021.DiscardOriginAuthorization  # noqa: E501
-
+    asn1_definition = DOA.ct_discardOriginAuthorization
     file_ext = "doa"
     as_resources = None
 
@@ -82,7 +80,5 @@ class DiscardOriginAuthorizationEContent(EncapsulatedContent):
         return self._ip_resources
 
 
-class DiscardOriginAuthorization(SignedObject, econtent_type=RpkiDiscardOriginAuthorization_2021.ct_discardOriginAuthorization):  # noqa: E501
+class DiscardOriginAuthorization(SignedObject[DiscardOriginAuthorizationContentType]):  # noqa: E501
     """CMS ASN.1 ContentInfo for RPKI Discard Origin Authorizations."""
-
-    econtent_cls = DiscardOriginAuthorizationEContent
