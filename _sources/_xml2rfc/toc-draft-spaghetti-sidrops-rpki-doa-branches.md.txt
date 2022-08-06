@@ -2,5 +2,5 @@
 
 :::{toctree}
 
-refs/remotes/origin/main/draft-spaghetti-sidrops-rpki-doa
+refs/heads/main/draft-spaghetti-sidrops-rpki-doa
 :::
