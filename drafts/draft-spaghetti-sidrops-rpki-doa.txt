@@ -5,10 +5,10 @@
 Network Working Group                                        J. Snijders
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                          M. Abrahamsson
-Expires: 3 October 2022                                              NTT
+Expires: 7 February 2023                                             NTT
                                                              B. Maddison
                                                               Workonline
-                                                            1 April 2022
+                                                           6 August 2022
 
 
   Resource Public Key Infrastructure (RPKI) object profile for Discard
@@ -49,13 +49,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 October 2022.
+   This Internet-Draft will expire on 7 February 2023.
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 1]
+Snijders, et al.         Expires 7 February 2023                [Page 1]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 2]
+Snijders, et al.         Expires 7 February 2023                [Page 2]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
@@ -165,9 +165,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 3]
+Snijders, et al.         Expires 7 February 2023                [Page 3]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
    RpkiDiscardOriginAuthorization-2021
@@ -221,9 +221,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 4]
+Snijders, et al.         Expires 7 February 2023                [Page 4]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
    Community ::= CHOICE {
@@ -277,9 +277,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 5]
+Snijders, et al.         Expires 7 February 2023                [Page 5]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
 2.3.4.  peerAsIDs
@@ -333,9 +333,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 6]
+Snijders, et al.         Expires 7 February 2023                [Page 6]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
    *  NotFound: a validated DOA object covering the prefix of the
@@ -389,9 +389,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 7]
+Snijders, et al.         Expires 7 February 2023                [Page 7]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
 7.  Exporting RTBH Routes
@@ -445,9 +445,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 8]
+Snijders, et al.         Expires 7 February 2023                [Page 8]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
    According to RFC 7942, "this will allow reviewers and working groups
@@ -501,9 +501,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                 [Page 9]
+Snijders, et al.         Expires 7 February 2023                [Page 9]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
       Name          OID                          Reference
@@ -557,9 +557,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                [Page 10]
+Snijders, et al.         Expires 7 February 2023               [Page 10]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
 12.1.  Normative References
@@ -613,9 +613,9 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                [Page 11]
+Snijders, et al.         Expires 7 February 2023               [Page 11]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
    [RFC1997]  Chandra, R., Traina, P., and T. Li, "BGP Communities
@@ -669,9 +669,9 @@ Authors' Addresses
 
 
 
-Snijders, et al.         Expires 3 October 2022                [Page 12]
+Snijders, et al.         Expires 7 February 2023               [Page 12]
 
-Internet-Draft                  RPKI DOA                      April 2022
+Internet-Draft                  RPKI DOA                     August 2022
 
 
    Mikael Abrahamsson
@@ -725,4 +725,4 @@ Internet-Draft                  RPKI DOA                      April 2022
 
 
 
-Snijders, et al.         Expires 3 October 2022                [Page 13]
+Snijders, et al.         Expires 7 February 2023               [Page 13]

@@ -14,25 +14,25 @@
         A DOA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block tagged with a specific set of Border Gateway Protocol (BGP) Communities, to signal a request to discard IP traffic destined towards the tagged IP prefix.
        
     " name="description">
-<meta content="xml2rfc 3.12.3" name="generator">
+<meta content="xml2rfc 3.13.0" name="generator">
 <meta content="draft-spaghetti-sidrops-rpki-doa-00" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.12.3
-    Python 3.9.10
+  xml2rfc 3.13.0
+    Python 3.9.13
     appdirs 1.4.4
     ConfigArgParse 1.5.3
-    google-i18n-address 2.5.0
+    google-i18n-address 2.5.2
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 3.1.2
     kitchen 1.2.6
-    lxml 4.8.0
-    MarkupSafe 2.0.1
+    lxml 4.9.1
+    MarkupSafe 2.1.1
     pycountry 22.3.5
-    pyflakes 2.4.0
+    pyflakes 2.5.0
     PyYAML 6.0
-    requests 2.27.1
-    setuptools 61.0.0
+    requests 2.28.1
+    setuptools 63.4.1
     six 1.16.0
 -->
 <link href="draft-spaghetti-sidrops-rpki-doa.xml" rel="alternate" type="application/rfc+xml">
@@ -176,10 +176,6 @@ svg {
 }
 .alignCenter > *:first-child {
   border: none;
-  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
-     support flexbox yet.
-  */
-  display: table;
   margin: 0 auto;
 }
 
@@ -658,6 +654,9 @@ hr.addr {
   }
   figure {
     overflow: scroll;
+  }
+  pre.breakable {
+    break-inside: auto;
   }
   h1, h2, h3, h4, h5, h6 {
     page-break-after: avoid;
@@ -1190,11 +1189,11 @@ li > p:last-of-type {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">RPKI DOA</td>
-<td class="right">April 2022</td>
+<td class="right">August 2022</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Snijders, et al.</td>
-<td class="center">Expires 3 October 2022</td>
+<td class="center">Expires 7 February 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1207,12 +1206,12 @@ li > p:last-of-type {
 <dd class="internet-draft">draft-spaghetti-sidrops-rpki-doa-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-04-01" class="published">1 April 2022</time>
+<time datetime="2022-08-06" class="published">6 August 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-10-03">3 October 2022</time></dd>
+<dd class="expires"><time datetime="2023-02-07">7 February 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1263,7 +1262,7 @@ li > p:last-of-type {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 October 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 February 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1442,7 +1441,7 @@ li > p:last-of-type {
 <p id="section-2.1-1">
           The following ASN.1 module specifies the encapContentInfo component for DOA objects:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <div id="section-2.1-2">
-<pre class="lang-asn.1 sourcecode">RpkiDiscardOriginAuthorization-2021
+<pre class="breakable lang-asn.1 sourcecode">RpkiDiscardOriginAuthorization-2021
  { iso(1) member-body(2) us(840) rsadsi(113549)
    pkcs(1) pkcs9(9) smime(16) mod(0) TBD }
 
