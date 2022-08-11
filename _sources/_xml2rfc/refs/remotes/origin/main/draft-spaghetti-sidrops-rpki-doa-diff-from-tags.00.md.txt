@@ -1,6 +1,6 @@
-# refs/tags/00 ⟼ refs/heads/main
+# refs/tags/00 ⟼ refs/remotes/origin/main
 
 :::{xml2rfc:diff} draft-spaghetti-sidrops-rpki-doa
 :from: refs/tags/00
-:to: refs/heads/main
+:to: refs/remotes/origin/main
 :::
