@@ -14,7 +14,7 @@ all: drafts asn1
 drafts: $(NAME).txt
 
 $(NAME).txt: $(NAME).xml
-	xml2rfc $(NAME).xml --html --text --expand
+	xml2rfc $(NAME).xml --html --text --expand --allow-local-file-access
 
 .PHONY: asn1
 asn1: rpkimancer_doa/asn1/$(MOD).asn

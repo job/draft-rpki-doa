@@ -24,10 +24,8 @@
       Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Authorizations (DOA)
     </title>
 
-    <seriesInfo name="Internet-Draft" value="draft-spaghetti-sidrops-rpki-doa-00"/>
-
     <author fullname="Job Snijders" initials="J." surname="Snijders">
-      <organization>Fastly</organization>
+      <organization abbrev="BSD">BSD Software Development</organization>
       <address>
         <postal>
           <street/>
@@ -35,7 +33,7 @@
           <city>Amsterdam</city>
           <country>Netherlands</country>
         </postal>
-        <email>job@fastly.com</email>
+        <email>job@bsd.nl</email>
       </address>
     </author>
 
