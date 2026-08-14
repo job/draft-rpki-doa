@@ -1,10 +1,10 @@
-# draft-spaghetti-sidrops-rpki-doa
+# draft-spaghetti-grow-rpki-doa
 
 RPKI Discard Origin Authorization. A mechanism to confirm whether a resource
 holder authorized a specific tuple of (peer AS, origin AS, prefix, prefixlength
 and BGP community) to signal a request to discard traffic.
 
-Work in progress repository for Internet-Draft draft-spaghetti-sidrops-rpki-doa
+Work in progress repository for Internet-Draft draft-spaghetti-grow-rpki-doa
 
 ## Usage
 
@@ -12,7 +12,7 @@ Work in progress repository for Internet-Draft draft-spaghetti-sidrops-rpki-doa
 
 The source files for the Internet-Draft documents are:
 
-- `draft-spaghetti-sidrops-rpki-doa.xml`
+- `draft-spaghetti-grow-rpki-doa.xml`
 - `RpkiDiscardOriginAuthorization-2021.asn`
 
 To regenerate the text and HTML versions after making changes, run:

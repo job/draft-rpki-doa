@@ -10,7 +10,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
-     docName="draft-spaghetti-sidrops-rpki-doa-01"
+     docName="draft-spaghetti-grow-rpki-doa-00"
      ipr="trust200902"
      submissionType="IETF"
      xml:lang="en"
@@ -20,7 +20,7 @@
   <front>
 
     <title abbrev="RPKI DOA">
-      Resource Public Key Infrastructure (RPKI) object profile for Discard Origin Authorizations (DOA)
+      A Profile for Resource Public Key Infrastructure (RPKI) Discard Origin Authorizations (DOA)
     </title>
 
     <author fullname="Job Snijders" initials="J." surname="Snijders">
@@ -308,7 +308,7 @@
 <![CDATA[
    Decimal:     [TBD]
    Description: id-mod-rpkiDOA
-   Reference:   [draft-spaghetti-sidrops-rpki-doa]
+   Reference:   [draft-spaghetti-grow-rpki-doa]
 ]]>
         </artwork>
         <t>
@@ -325,7 +325,7 @@
 <![CDATA[
    Decimal:     [TBD]
    Description: id-ct-discardOriginAuthorization
-   Reference:   [draft-spaghetti-sidrops-rpki-doa]
+   Reference:   [draft-spaghetti-grow-rpki-doa]
 ]]>
         </artwork>
         <t>
@@ -450,6 +450,9 @@
         <name>Individual Submission Phase</name>
         <t>Changes from draft-spaghetti-sidrops-rpki-doa-00:</t>
         <ul>
+          <li>
+            Moved target WG from SIDROPS to GROW.
+          </li>
           <li>
             Clarified that the communities field is evaluated as a logical OR, and that signing tools populate the well-known BLACKHOLE community (<xref target="RFC7999"/>) by default when no communities are specified, resolving the open question in -00.
           </li>

@@ -4,7 +4,7 @@
 #
 
 # Your nroff document is called foo.txt. Change below as appropiate.
-NAME=draft-spaghetti-sidrops-rpki-doa
+NAME=draft-spaghetti-grow-rpki-doa
 MOD=RpkiDiscardOriginAuthorization-2021
 
 .PHONY: all
