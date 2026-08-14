@@ -38,7 +38,8 @@ IPListRange ::= SEQUENCE (SIZE(1..MAX)) OF IPAddressFamilyRange
 IPAddressFamilyRange ::= SEQUENCE {
    addressFamily        OCTET STRING (SIZE(2..3)),
    addressOrRange       IPAddressOrRange,
-   prefixLengthRange    PrefixLengthRange OPTIONAL -- if omitted, assume hostroutes
+   prefixLengthRange    PrefixLengthRange OPTIONAL
+                        -- if omitted, assume hostroutes
 }
 
 PrefixLengthRange ::= SEQUENCE {
