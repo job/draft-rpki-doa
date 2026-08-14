@@ -62,6 +62,20 @@
       </address>
     </author>
 
+    <author fullname="Bryton Herdes" initials="B." surname="Herdes">
+      <organization abbrev="Cloudflare">Cloudflare, Inc.</organization>
+      <address>
+        <postal>
+          <street/>
+          <city>Champaign</city>
+          <region>Illinois</region>
+          <code/>
+          <country>United States of America</country>
+        </postal>
+        <email>bryton@cloudflare.com</email>
+      </address>
+    </author>
+
     <abstract>
       <t>
         This document defines a Cryptographic Message Syntax (CMS) profile for Discard Origin Authorizations (DOAs), for use with the Resource Public Key Infrastructure (RPKI).
