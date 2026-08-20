@@ -1,3 +1,5 @@
+<CODE BEGINS>
+
 RpkiDiscardOriginAuthorization-2021
  { iso(1) member-body(2) us(840) rsadsi(113549)
    pkcs(1) pkcs9(9) smime(16) mod(0) TBD }
@@ -11,45 +13,49 @@ IMPORTS
    { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
      pkcs-9(9) smime(16) modules(0) id-mod-cms-2009(58) }
 
- IPAddressOrRange, IPAddressRange, IPAddress, ASId
+ IPAddressOrRange, IPAddressRange, IPAddress
  FROM IPAddrAndASCertExtn -- in [RFC3779]
    { iso(1) identified-organization(3) dod(6) internet(1)
      security(5) mechanisms(5) pkix(7) mod(0)
      id-mod-ip-addr-and-as-ident(30) } ;
 
 ct-discardOriginAuthorization CONTENT-TYPE ::=
-   { TYPE DiscardOriginAuthorization IDENTIFIED BY
-     id-ct-discardOriginAuthorization }
+  { TYPE DiscardOriginAuthorization IDENTIFIED BY
+    id-ct-discardOriginAuthorization }
 
 id-ct-discardOriginAuthorization OBJECT IDENTIFIER ::=
-   { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
-     pkcs-9(9) id-smime(16) id-ct(1) TBD }
+  { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+    pkcs-9(9) id-smime(16) id-ct(1) TBD }
 
 DiscardOriginAuthorization ::= SEQUENCE {
-   version             [0] INTEGER DEFAULT 0,
-   ipAddrBlocks        IPListRange,
-   originAsID          ASId,
-   peerAsIDs           [1] SEQUENCE SIZE(1..MAX) OF ASId OPTIONAL,
-   communities         [2] SEQUENCE SIZE(1..MAX) OF Community
+  version            [0] INTEGER DEFAULT 0,
+  ipAddrBlocks       IPListRange,
+  originAsID         ASNumber,
+  peerAsIDs          [1] SEQUENCE SIZE(1..MAX) OF ASNumber OPTIONAL,
+  communities        [2] SEQUENCE SIZE(1..MAX) OF Community
 }
 
 IPListRange ::= SEQUENCE (SIZE(1..MAX)) OF IPAddressFamilyRange
 
+ASNumber ::= INTEGER (1..4294967295)
+
 IPAddressFamilyRange ::= SEQUENCE {
-   addressFamily        OCTET STRING (SIZE(2..3)),
-   addressOrRange       IPAddressOrRange,
-   prefixLengthRange    PrefixLengthRange OPTIONAL
-                        -- if omitted, assume hostroutes
+  addressFamily      OCTET STRING (SIZE(2..3)),
+  addressOrRange     IPAddressOrRange,
+  prefixLengthRange  PrefixLengthRange OPTIONAL
+                       -- if omitted, assume hostroutes
 }
 
 PrefixLengthRange ::= SEQUENCE {
-   minLength            INTEGER,
-   maxLength            INTEGER
+  minLength          INTEGER,
+  maxLength          INTEGER
 }
 
 Community ::= CHOICE {
-   bgpCommunity        [0] OCTET STRING (SIZE(4)),
-   bgpLargeCommunity   [1] OCTET STRING (SIZE(12))
+  bgpCommunity       [0] OCTET STRING (SIZE(4)),
+  bgpLargeCommunity  [1] OCTET STRING (SIZE(12))
 }
 
 END
+
+<CODE ENDS>

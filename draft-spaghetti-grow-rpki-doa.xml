@@ -15,6 +15,7 @@
      submissionType="IETF"
      xml:lang="en"
      sortRefs="true"
+     consensus="true"
      version="3">
 
   <front>
@@ -127,7 +128,7 @@
         <section>
           <name>version</name>
           <t>
-            The version number of the DiscardOriginAuthorization MUST be 0.
+            The <tt>version</tt> number of the DiscardOriginAuthorization MUST be 0.
           </t>
         </section>
         <section>
@@ -136,33 +137,33 @@
              The IP address prefixes for which the announcement of RTBH routes is authorized.
              The IP address resources contained here are the resources used to mark the authorization, and MUST match the set of resources listed by the EE certificate carried in the CMS certificates field.
              See <xref target="RFC9582" section="3.3"/> for a similar, but not entirely similar approach.
-             A notable difference is the absence of MaxLength, and instead a PrefixLengthRange is used.
-             If no PrefixLengthRange is present, only the "host route" prefix length (i.e. 32 for IPv4 and 128 for IPv6) is authorized.
+             A notable difference is the absence of <tt>MaxLength</tt>, and instead a <tt>PrefixLengthRange</tt> is used.
+             If no <tt>PrefixLengthRange</tt> is present, only the "host route" prefix length (i.e. 32 for IPv4 and 128 for IPv6) is authorized.
           </t>
         </section>
         <section>
           <name>originAsID</name>
           <t>
-            The asID field contains the AS number that is authorized to originate RTBH routes for the given IP address prefixes.
-            The asID does not have to be contained by the resources listed on the EE certificate.
+            The <tt>originAsID</tt> field contains the AS number that is authorized to originate RTBH routes for the given IP address prefixes.
+            The <tt>originAsID</tt> does not have to be contained by the resources listed on the EE certificate.
           </t>
         </section>
         <section>
           <name>peerAsIDs</name>
           <t>
-            The peerAsIDs field contains zero or more AS numbers that are authorized to propagate routes intended to signal an RTBH request for the given IP address prefixes.
-            The peerAsIDs do not have to be contained by the resources listed on the EE certificate.
-            Network operators MUST only accept the RTBH request if it was received from any listed peerAsIDs.
-            The peerAsIDs field allows DOAs to be used to validate RTBH routes with one AS hop between originator and recipient.
+            If present, the <tt>peerAsIDs</tt> field contains one or more AS numbers that are authorized to propagate routes intended to signal an RTBH request for the given IP address prefixes.
+            The values in the <tt>peerAsIDs</tt> field do not have to be contained by the resources listed on the EE certificate.
+            Network operators MUST only accept the RTBH request if it was received from any listed <tt>peerAsIDs</tt>.
+            The <tt>peerAsIDs</tt> field allows DOAs to be used to validate RTBH routes with one AS hop between originator and recipient.
           </t>
         </section>
         <section>
           <name>communities</name>
           <t>
-            The communities field contains the Classic BGP Communities or Large BGP Communities which are to be the 'trigger' to start RTBH.
+            The <tt>communities</tt> field contains the Classic BGP Communities or Large BGP Communities which are to be the 'trigger' to start RTBH.
             At least one community MUST be present.
-            The communities are evaluated as a logical 'or': any single community listed in the DOA that is also present on the received route is sufficient to trigger the start of RTBH.
-            Signing tools SHOULD populate the well-known BLACKHOLE community defined in <xref target="RFC7999"/> by default when the issuer does not specify any other communities.
+            The communities are evaluated as a logical 'or', i.e., any single community listed in the DOA that is also present on the received route is sufficient to trigger the start of RTBH.
+            Signing tools <bcp14>MAY</bcp14> populate the well-known <tt>BLACKHOLE</tt> community defined in <xref target="RFC7999"/> by default when the issuer does not specify any other communities.
           </t>
         </section>
       </section>
