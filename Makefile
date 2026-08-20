@@ -1,9 +1,3 @@
-#
-# Makefile for I-D's and RFCs
-# $Id: Makefile,v 1.1.1.1 2002-11-11 05:11:48 randy Exp $
-#
-
-# Your nroff document is called foo.txt. Change below as appropiate.
 NAME=draft-spaghetti-grow-rpki-doa
 MOD=RpkiDiscardOriginAuthorization-2021
 
@@ -24,3 +18,6 @@ rpkimancer_doa/asn1/$(MOD).asn: $(MOD).asn $(MOD).patch
 
 clean:
 	rm -f *.html *.txt rpkimancer_doa/asn1/$(MOD).asn
+
+www:
+	cp -v $(NAME).{exp.xml,txt,html} ~/Downloads/
