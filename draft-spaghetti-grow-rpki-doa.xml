@@ -36,32 +36,6 @@
       </address>
     </author>
 
-    <author fullname="Mikael Abrahamsson" initials="M." surname="Abrahamsson">
-      <organization abbrev="NTT">NTT Ltd.</organization>
-      <address>
-        <postal>
-          <street/>
-          <code/>
-          <city>Stockholm</city>
-          <country>Sweden</country>
-        </postal>
-        <email>mikael@swm.pp.se</email>
-      </address>
-    </author>
-
-    <author fullname="Ben Maddison" initials="B." surname="Maddison">
-      <organization abbrev="Workonline">Workonline Communications</organization>
-      <address>
-        <postal>
-          <street/>
-          <city>Cape Town</city>
-          <code/>
-          <country>South Africa</country>
-        </postal>
-        <email>benm@workonline.africa</email>
-      </address>
-    </author>
-
     <author fullname="Bryton Herdes" initials="B." surname="Herdes">
       <organization abbrev="Cloudflare">Cloudflare, Inc.</organization>
       <address>
@@ -454,7 +428,7 @@
     <section anchor="Acknowledgements">
       <name>Acknowledgements</name>
       <t>
-        TODO
+        The authors would like to thank <contact fullname="Ben Maddison"/> and <contact fullname="Mikael Abrahamsson"/> for helping kick-start the DOA project.
       </t>
     </section>
 
