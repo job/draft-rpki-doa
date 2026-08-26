@@ -136,7 +136,7 @@
           <t>
              The IP address prefixes for which the announcement of RTBH routes is authorized.
              The IP address resources contained here are the resources used to mark the authorization, and MUST match the set of resources listed by the EE certificate carried in the CMS certificates field.
-             See <xref target="RFC9582" section="3.3"/> for a similar, but not entirely similar approach.
+             See <xref target="RFC9582" section="3.3"/> for a similar, but not entirely identical approach.
              A notable difference is the absence of <tt>MaxLength</tt>, and instead a <tt>PrefixLengthRange</tt> is used.
              If no <tt>PrefixLengthRange</tt> is present, only the "host route" prefix length (i.e. 32 for IPv4 and 128 for IPv6) is authorized.
           </t>
@@ -429,6 +429,9 @@
       <name>Acknowledgements</name>
       <t>
         The authors would like to thank <contact fullname="Ben Maddison"/> and <contact fullname="Mikael Abrahamsson"/> for helping kick-start the DOA project.
+      </t>
+      <t>
+        The authors would like to thank <contact fullname="Dale W. Carder"/> for their helpful feedback and review of this document.
       </t>
     </section>
 
